@@ -1,26 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="ku">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wafa & Ako Wedding</title>
+
+<style>
+body{
+    background: linear-gradient(135deg,#ffdde1,#ee9ca7);
+    text-align:center;
+    font-family:sans-serif;
+    color:white;
+    padding-top:50px;
+}
+
+.card{
+    background:rgba(255,255,255,0.15);
+    padding:25px;
+    border-radius:20px;
+    width:90%;
+    max-width:400px;
+    margin:auto;
+}
+
+h1{
+    font-size:38px;
+}
+
+#countdown{
+    font-size:28px;
+    margin-top:20px;
+    font-weight:bold;
+}
+</style>
 </head>
+
 <body>
 
-<h1>👰 وەفا & 🤵 ئاکۆ</h1>
+<div class="card">
+<h1>💍 وەفا & ئاکۆ 💍</h1>
 
 <p>📅 20/09/2026</p>
+<p>🕗 8:00 PM</p>
+<p>📍 شەقڵاوە</p>
 
-<p>⏰ 8:00 ئێوارە</p>
+<h2>بەخێربێن بۆ ئاهەنگی هاوسەرگیریمان ❤️</h2>
 
-<p>
-📍 رۆیال ڤێلا<br>
-شەقامی 150 مەتری<br>
-نزیک مەزرەعەی شێخ باز<br>
-ڕێگای شەقلاوە
-</p>
+<div id="countdown"></div>
+</div>
 
-<a href="https://maps.google.com/?q=36.248158,44.114311">
-بینینی شوێن
-</a>
+<script>
+var countDownDate = new Date("Sep 20, 2026 20:00:00").getTime();
+
+var x = setInterval(function() {
+var now = new Date().getTime();
+var distance = countDownDate - now;
+
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+document.getElementById("countdown").innerHTML =
+"⏳ " + days + " ڕۆژ " + hours + " کاتژمێر " + minutes + " خولەک";
+
+}, 1000);
+</script>
 
 </body>
 </html>
