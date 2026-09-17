@@ -2,922 +2,510 @@
 <html lang="ku" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ئاکۆ ❤️ وەفا | بانگێشتنامەی مارەبڕین</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  font-family:'Noto Kufi Arabic',sans-serif;
-  color:#fff;
-  background:#030308;
-  overflow-x:hidden;
+    font-family:"Noto Kufi Arabic",sans-serif;
+    background:#05030a;
+    color:white;
+    overflow-x:hidden;
 }
 
 /* ================= BACKGROUND ================= */
 
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-5;
-
-  background:
-  linear-gradient(
-    rgba(0,0,0,.58),
-    rgba(5,0,15,.78)
-  ),
-  url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2400&q=95")
-  center/cover no-repeat;
-
-  transform:scale(1.04);
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(rgba(5,3,10,.72),rgba(5,3,10,.9)),
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2400&q=95")
+        center/cover;
+    z-index:-5;
 }
 
-body:after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-4;
-
-  background:
-  radial-gradient(
-    circle at 50% 20%,
-    rgba(255,80,190,.25),
-    transparent 35%
-  ),
-  radial-gradient(
-    circle at 20% 80%,
-    rgba(0,160,255,.18),
-    transparent 30%
-  ),
-  radial-gradient(
-    circle at 80% 70%,
-    rgba(180,70,255,.2),
-    transparent 30%
-  );
+.glow{
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:.45;
+    z-index:-2;
+    animation:float 8s ease-in-out infinite alternate;
 }
 
-/* ================= LED LIGHTS ================= */
-
-.led{
-  position:fixed;
-  width:280px;
-  height:280px;
-  border-radius:50%;
-  filter:blur(80px);
-  opacity:.45;
-  z-index:-3;
-  pointer-events:none;
-  animation:ledMove 7s infinite alternate ease-in-out;
+.glow1{
+    background:#ff006e;
+    top:-80px;
+    left:-80px;
 }
 
-.led1{
-  top:-130px;
-  right:-100px;
-  background:#ff1493;
+.glow2{
+    background:#6c00ff;
+    bottom:-100px;
+    right:-100px;
+    animation-delay:2s;
 }
 
-.led2{
-  top:35%;
-  left:-150px;
-  background:#008cff;
-  animation-delay:2s;
+.glow3{
+    background:#00d9ff;
+    top:40%;
+    right:20%;
+    animation-delay:4s;
 }
 
-.led3{
-  bottom:-140px;
-  right:-100px;
-  background:#9b30ff;
-  animation-delay:4s;
+@keyframes float{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+    to{
+        transform:translate(50px,-30px) scale(1.25);
+    }
 }
 
-.led4{
-  bottom:25%;
-  left:-120px;
-  background:#00d9ff;
-  animation-delay:1s;
+/* ================= TEXT SHINE ================= */
+
+.shine{
+    position:relative;
+    display:inline-block;
+    overflow:hidden;
 }
 
-@keyframes ledMove{
-  0%{
-    transform:scale(.8) translate(0,0);
-  }
-  100%{
-    transform:scale(1.3) translate(35px,-30px);
-  }
+.shine::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:45%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.9),
+        transparent
+    );
+    transform:skewX(-20deg);
+    animation:shine 3.5s infinite;
+}
+
+@keyframes shine{
+    0%{
+        left:-120%;
+    }
+    45%,100%{
+        left:140%;
+    }
+}
+
+/* ================= SPARKLES ================= */
+
+.sparkle{
+    position:fixed;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:white;
+    box-shadow:
+        0 0 6px white,
+        0 0 15px #ff8bd1;
+    pointer-events:none;
+    z-index:20;
+    animation:sparkleMove linear infinite;
+}
+
+@keyframes sparkleMove{
+    0%{
+        transform:translateY(100vh) scale(.3);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    50%{
+        transform:translateY(45vh) scale(1.4);
+    }
+
+    100%{
+        transform:translateY(-10vh) scale(.2);
+        opacity:0;
+    }
 }
 
 /* ================= WELCOME ================= */
 
 #welcome{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-
-  background:
-  linear-gradient(
-    rgba(0,0,0,.7),
-    rgba(20,0,20,.75)
-  ),
-  url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2400&q=95")
-  center/cover;
-
-  transition:1.2s;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
 }
 
-#welcome.hide{
-  opacity:0;
-  visibility:hidden;
+.welcome-box{
+    max-width:850px;
+    padding:50px 25px;
 }
 
-.welcomeBox{
-  width:min(92%,650px);
-  padding:55px 25px;
-
-  border-radius:40px;
-
-  background:rgba(0,0,0,.35);
-
-  backdrop-filter:blur(20px);
-
-  border:1px solid rgba(255,255,255,.3);
-
-  box-shadow:
-  0 0 20px #ff38ae,
-  0 0 60px rgba(255,50,170,.35),
-  inset 0 0 30px rgba(255,255,255,.05);
+.small-title{
+    color:#ffd6ec;
+    font-size:16px;
+    margin-bottom:25px;
 }
 
-.welcomeSmall{
-  font-size:16px;
-  color:#ffd9ef;
-  margin-bottom:15px;
+.main-names{
+    font-size:clamp(38px,8vw,75px);
+    font-weight:800;
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #ffd36a,
+        #fff,
+        #ff72bd,
+        #fff
+    );
+    background-size:300%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:goldMove 5s linear infinite;
+    text-shadow:0 0 30px rgba(255,100,200,.4);
 }
 
-.welcomeTitle{
-  font-size:clamp(32px,8vw,65px);
-  font-weight:800;
-
-  background:
-  linear-gradient(
-    90deg,
-    #fff,
-    #ffd0ec,
-    #fff,
-    #9fdcff,
-    #fff
-  );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-
-  text-shadow:
-  0 0 20px #ff40ad,
-  0 0 45px rgba(255,60,180,.5);
-
-  margin-bottom:15px;
+@keyframes goldMove{
+    0%{background-position:0%}
+    100%{background-position:300%}
 }
 
-.welcomeText{
-  color:#eee;
-  line-height:2.2;
-  margin-bottom:35px;
+.welcome-text{
+    margin:25px auto 35px;
+    max-width:650px;
+    line-height:2.3;
+    color:#eee;
+    font-size:17px;
 }
 
-.enterBtn{
-  font-family:inherit;
-  font-size:18px;
-  font-weight:700;
-
-  color:#fff;
-
-  border:0;
-  border-radius:50px;
-
-  padding:18px 42px;
-
-  cursor:pointer;
-
-  background:
-  linear-gradient(
-    90deg,
-    #ff159b,
-    #8d45ff,
-    #009dff
-  );
-
-  box-shadow:
-  0 0 15px #ff159b,
-  0 0 40px rgba(120,70,255,.8);
-
-  animation:buttonPulse 2s infinite;
+.enter-btn{
+    position:relative;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    padding:16px 35px;
+    border-radius:50px;
+    color:white;
+    font-family:inherit;
+    font-size:16px;
+    font-weight:700;
+    background:linear-gradient(90deg,#ff006e,#9b00ff,#00c6ff);
+    background-size:250%;
+    animation:buttonGlow 4s linear infinite;
+    box-shadow:
+        0 0 20px rgba(255,0,110,.5),
+        0 0 50px rgba(150,0,255,.25);
+    transition:.3s;
 }
 
-@keyframes buttonPulse{
-  0%,100%{
-    transform:scale(1);
-  }
-  50%{
-    transform:scale(1.07);
-  }
+.enter-btn:hover{
+    transform:scale(1.08);
+}
+
+@keyframes buttonGlow{
+    0%{background-position:0%}
+    100%{background-position:250%}
 }
 
 /* ================= INTRO ================= */
 
 #intro{
-  position:fixed;
-  inset:0;
-  z-index:90;
-
-  display:none;
-  justify-content:center;
-  align-items:center;
-
-  background:
-  radial-gradient(
-    circle,
-    rgba(255,50,180,.2),
-    rgba(0,0,0,.9)
-  );
-
-  transition:1s;
+    position:fixed;
+    inset:0;
+    background:#05030a;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:100;
+    text-align:center;
 }
 
-#intro.show{
-  display:flex;
+.intro-content{
+    animation:introIn 2s ease forwards;
 }
 
-.introContent{
-  text-align:center;
-  perspective:1200px;
+@keyframes introIn{
+    from{
+        opacity:0;
+        transform:scale(.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
-
-/* RINGS */
 
 .rings{
-  position:relative;
-  width:260px;
-  height:180px;
-  margin:auto;
+    font-size:70px;
+    filter:drop-shadow(0 0 20px gold);
+    margin-bottom:20px;
 }
 
-.ring{
-  position:absolute;
-
-  width:105px;
-  height:105px;
-
-  top:35px;
-
-  border-radius:50%;
-
-  border:12px solid #e9b83f;
-
-  background:
-  linear-gradient(
-    135deg,
-    #fff5a0,
-    #c88a12,
-    #fff3a0,
-    #a96d00
-  );
-
-  box-shadow:
-  inset 0 0 12px #fff,
-  0 0 10px #fff2a0,
-  0 0 35px #ffd84d,
-  0 0 70px rgba(255,190,30,.7);
+.intro-names{
+    font-size:clamp(35px,8vw,65px);
+    font-weight:800;
+    color:#ffd86b;
 }
 
-.ringLeft{
-  left:0;
-  animation:ringLeft 3s forwards;
-}
-
-.ringRight{
-  right:0;
-  animation:ringRight 3s forwards;
-}
-
-@keyframes ringLeft{
-  0%{
-    opacity:0;
-    transform:translateX(-220px) rotateX(65deg) rotateZ(-30deg);
-  }
-
-  100%{
-    opacity:1;
-    transform:translateX(75px) rotateX(65deg);
-  }
-}
-
-@keyframes ringRight{
-  0%{
-    opacity:0;
-    transform:translateX(220px) rotateX(65deg) rotateZ(30deg);
-  }
-
-  100%{
-    opacity:1;
-    transform:translateX(-75px) rotateX(65deg);
-  }
-}
-
-/* HANDS */
-
-.hands{
-  font-size:70px;
-  margin-top:-20px;
-
-  opacity:0;
-
-  animation:
-  handsIn 1.5s ease 2.7s forwards;
-}
-
-@keyframes handsIn{
-  from{
-    opacity:0;
-    transform:translateY(50px) scale(.7);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-}
-
-.names{
-  margin-top:10px;
-
-  font-size:clamp(32px,8vw,65px);
-
-  font-weight:800;
-
-  background:
-  linear-gradient(
-    90deg,
-    #fff,
-    #ffd1ed,
-    #fff,
-    #9cdcff,
-    #fff
-  );
-
-  -webkit-background-clip:text;
-  color:transparent;
-
-  opacity:0;
-
-  animation:textIn 1.2s ease 3.7s forwards;
-}
-
-.subtitle{
-  margin-top:10px;
-
-  font-size:clamp(18px,5vw,30px);
-
-  font-weight:700;
-
-  text-shadow:
-  0 0 10px #fff,
-  0 0 25px #ff2fa5,
-  0 0 50px #ff2fa5;
-
-  opacity:0;
-
-  animation:textIn 1.2s ease 4.3s forwards;
-}
-
-@keyframes textIn{
-  from{
-    opacity:0;
-    transform:translateY(25px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+.intro-sub{
+    margin-top:20px;
+    color:#eee;
 }
 
 /* ================= MAIN ================= */
 
 #main{
-  display:none;
-  padding:35px 15px 80px;
+    display:none;
+    padding:80px 20px;
 }
 
-#main.show{
-  display:block;
+.card{
+    position:relative;
+    max-width:900px;
+    margin:auto;
+    padding:3px;
+    border-radius:35px;
+    background:linear-gradient(
+        90deg,
+        #ff006e,
+        #ffd700,
+        #00d9ff,
+        #8b00ff,
+        #ff006e
+    );
+    background-size:400%;
+    animation:borderMove 8s linear infinite;
 }
 
-/* ================= INVITATION ================= */
-
-.invitation{
-  position:relative;
-
-  width:min(100%,850px);
-
-  margin:auto;
-
-  padding:60px 25px;
-
-  border-radius:40px;
-
-  background:
-  linear-gradient(
-    145deg,
-    rgba(10,5,20,.78),
-    rgba(20,5,25,.7)
-  );
-
-  backdrop-filter:blur(20px);
-
-  border:2px solid rgba(255,255,255,.2);
-
-  box-shadow:
-  0 0 20px #ff27a4,
-  0 0 55px rgba(255,40,170,.35),
-  0 0 100px rgba(80,100,255,.2);
-
-  overflow:hidden;
+@keyframes borderMove{
+    0%{background-position:0%}
+    100%{background-position:400%}
 }
 
-/* FOUR LED SIDES */
-
-.invitation:before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  border-radius:40px;
-
-  padding:3px;
-
-  background:
-  linear-gradient(
-    90deg,
-    #ff1493,
-    #9b4dff,
-    #00cfff,
-    #ff1493,
-    #ff1493
-  );
-
-  background-size:300% 300%;
-
-  animation:ledBorder 5s linear infinite;
-
-  -webkit-mask:
-  linear-gradient(#fff 0 0) content-box,
-  linear-gradient(#fff 0 0);
-
-  -webkit-mask-composite:xor;
-
-  mask-composite:exclude;
-
-  pointer-events:none;
+.card-inner{
+    border-radius:32px;
+    background:
+        linear-gradient(
+            rgba(8,5,15,.94),
+            rgba(8,5,15,.96)
+        );
+    padding:50px 25px;
+    text-align:center;
 }
 
-@keyframes ledBorder{
-  0%{
-    background-position:0% 50%;
-  }
-
-  50%{
-    background-position:100% 50%;
-  }
-
-  100%{
-    background-position:0% 50%;
-  }
+.section-title{
+    font-size:clamp(28px,6vw,45px);
+    color:#ffd86b;
+    margin-bottom:30px;
 }
 
-/* EXTRA LED DOTS */
-
-.ledLine{
-  position:absolute;
-  inset:8px;
-
-  border-radius:35px;
-
-  pointer-events:none;
-
-  box-shadow:
-  0 -4px 15px #ff36ad,
-  0 4px 15px #00cfff,
-  -4px 0 15px #8d42ff,
-  4px 0 15px #ff36ad;
+.invite-text{
+    color:#eee;
+    line-height:2.4;
+    font-size:16px;
 }
 
-/* ================= CONTENT ================= */
-
-.topCrown{
-  text-align:center;
-  font-size:45px;
-  margin-bottom:10px;
-
-  filter:
-  drop-shadow(0 0 10px #ffd34e)
-  drop-shadow(0 0 25px #ff3cab);
-}
-
-.inviteSmall{
-  text-align:center;
-  color:#ffd6ec;
-  font-size:16px;
-  margin-bottom:10px;
-}
-
-.mainTitle{
-  text-align:center;
-
-  font-size:clamp(35px,9vw,70px);
-
-  font-weight:800;
-
-  background:
-  linear-gradient(
-    90deg,
-    #fff,
-    #ffd1eb,
-    #fff,
-    #b2eaff,
-    #fff
-  );
-
-  -webkit-background-clip:text;
-  color:transparent;
-
-  text-shadow:
-  0 0 20px #ff36a8;
-
-  margin-bottom:10px;
-}
-
-.divider{
-  width:170px;
-  height:2px;
-
-  margin:20px auto;
-
-  background:
-  linear-gradient(
-    90deg,
-    transparent,
-    #fff,
-    #ff40b0,
-    #fff,
-    transparent
-  );
-
-  box-shadow:
-  0 0 15px #ff40b0;
-}
-
-.welcomeGuests{
-  text-align:center;
-
-  line-height:2.3;
-
-  color:#f7e8f1;
-
-  font-size:16px;
-
-  margin:25px auto;
-
-  max-width:700px;
-}
-
-/* ================= COUPLE ================= */
-
-.couple{
-  text-align:center;
-
-  margin:40px 0;
-
-  padding:30px 15px;
-
-  border-radius:30px;
-
-  background:
-  linear-gradient(
-    135deg,
-    rgba(255,30,160,.1),
-    rgba(80,120,255,.1)
-  );
-
-  border:1px solid rgba(255,255,255,.12);
-}
-
-.coupleNames{
-  font-size:clamp(30px,8vw,55px);
-
-  font-weight:800;
-
-  text-shadow:
-  0 0 15px #ff45b1,
-  0 0 35px rgba(255,45,170,.5);
-}
-
-.love{
-  display:block;
-
-  font-size:40px;
-
-  margin:8px 0;
-
-  animation:heart 1.5s infinite;
-}
-
-@keyframes heart{
-  50%{
-    transform:scale(1.2);
-  }
-}
-
-/* ================= MESSAGE ================= */
-
-.message{
-  text-align:center;
-
-  line-height:2.5;
-
-  font-size:16px;
-
-  color:#eee;
-
-  margin:30px auto;
-
-  max-width:720px;
-}
-
-.message strong{
-  color:#ffd1e9;
+.names{
+    margin:35px 0;
+    font-size:clamp(32px,7vw,55px);
+    font-weight:800;
+    color:#ff8bc8;
+    text-shadow:
+        0 0 10px #ff1493,
+        0 0 35px rgba(255,20,147,.5);
 }
 
 /* ================= INFO ================= */
 
-.infoGrid{
-  display:grid;
-
-  grid-template-columns:
-  repeat(2,1fr);
-
-  gap:15px;
-
-  margin:35px 0;
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    margin:40px 0;
 }
 
-.infoBox{
-  padding:25px 15px;
-
-  text-align:center;
-
-  border-radius:25px;
-
-  background:rgba(255,255,255,.055);
-
-  border:1px solid rgba(255,255,255,.13);
-
-  box-shadow:
-  inset 0 0 20px rgba(255,255,255,.025),
-  0 0 20px rgba(255,50,180,.08);
+.info-box{
+    padding:25px 15px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    background:rgba(255,255,255,.04);
+    box-shadow:inset 0 0 25px rgba(255,255,255,.02);
+    transition:.3s;
 }
 
-.infoIcon{
-  font-size:32px;
-  margin-bottom:8px;
+.info-box:hover{
+    transform:translateY(-6px);
+    border-color:#ff80c0;
+    box-shadow:0 0 25px rgba(255,0,110,.25);
 }
 
-.infoBox h3{
-  color:#ffd4e9;
-  margin-bottom:8px;
-  font-size:18px;
+.icon{
+    font-size:30px;
+    margin-bottom:10px;
 }
 
-.infoBox p{
-  line-height:2;
-  font-size:14px;
+.info-title{
+    color:#ffd86b;
+    font-weight:700;
+    margin-bottom:8px;
 }
 
-/* ================= VERSE ================= */
-
-.verse{
-  padding:30px 20px;
-
-  border-radius:30px;
-
-  text-align:center;
-
-  line-height:2.6;
-
-  background:
-  linear-gradient(
-    135deg,
-    rgba(255,40,170,.08),
-    rgba(70,100,255,.08)
-  );
-
-  border:1px solid rgba(255,255,255,.14);
-
-  margin:35px 0;
-
-  box-shadow:
-  0 0 30px rgba(255,40,170,.08);
+.info-value{
+    color:#eee;
+    line-height:2;
 }
 
-.verseTitle{
-  color:#ffd5eb;
-  font-weight:700;
-  margin-bottom:15px;
+/* ================= QUOTE ================= */
+
+.quote{
+    margin:45px auto;
+    padding:30px 20px;
+    border-right:3px solid #ff5da2;
+    border-left:3px solid #ffd86b;
+    max-width:700px;
+    background:rgba(255,255,255,.03);
+    border-radius:20px;
+    line-height:2.5;
 }
 
-.verse small{
-  color:#aaa;
+.quote small{
+    display:block;
+    margin-top:15px;
+    color:#ffd86b;
 }
 
 /* ================= COUNTDOWN ================= */
 
-.countTitle{
-  text-align:center;
-
-  color:#ffd5eb;
-
-  margin:25px 0 15px;
+.countdown-title{
+    color:#ff9dce;
+    margin-bottom:20px;
 }
 
 .countdown{
-  display:grid;
-
-  grid-template-columns:
-  repeat(4,1fr);
-
-  gap:10px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    max-width:600px;
+    margin:25px auto 45px;
 }
 
-.time{
-  padding:18px 5px;
-
-  border-radius:20px;
-
-  background:rgba(255,255,255,.06);
-
-  border:1px solid rgba(255,255,255,.12);
-
-  text-align:center;
-
-  box-shadow:
-  0 0 20px rgba(255,50,180,.08);
+.time-box{
+    padding:18px 5px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.12);
 }
 
-.time b{
-  display:block;
-
-  font-size:27px;
-
-  text-shadow:
-  0 0 15px #ff42b0;
+.time-number{
+    font-size:30px;
+    font-weight:800;
+    color:#ffd86b;
 }
 
-.time span{
-  font-size:11px;
-  color:#bbb;
+.time-label{
+    font-size:12px;
+    color:#ccc;
 }
 
-/* ================= SONG ================= */
+/* ================= MUSIC ================= */
 
-.songTitle{
-  text-align:center;
-
-  margin:40px 0 15px;
-
-  color:#ffd4ea;
-
-  font-weight:700;
+.music-box{
+    margin:40px auto;
+    padding:25px;
+    max-width:600px;
+    border-radius:25px;
+    background:linear-gradient(
+        135deg,
+        rgba(255,0,110,.12),
+        rgba(100,0,255,.12)
+    );
+    border:1px solid rgba(255,255,255,.12);
 }
 
-.song{
-  border-radius:25px;
-
-  overflow:hidden;
-
-  border:1px solid rgba(255,255,255,.15);
-
-  box-shadow:
-  0 0 30px rgba(255,40,170,.2);
+.music-icon{
+    font-size:45px;
+    animation:musicPulse 1.5s infinite;
 }
 
-.song iframe{
-  width:100%;
-  height:80px;
-  border:0;
+@keyframes musicPulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.2);
+    }
 }
 
-/* ================= FINAL MESSAGE ================= */
-
-.finalMessage{
-  margin-top:40px;
-
-  text-align:center;
-
-  padding:30px 20px;
-
-  border-radius:30px;
-
-  background:
-  linear-gradient(
-    135deg,
-    rgba(255,40,170,.12),
-    rgba(90,80,255,.12)
-  );
-
-  border:1px solid rgba(255,255,255,.15);
-
-  line-height:2.5;
-}
-
-.finalMessage h2{
-  color:#ffd1e9;
-  margin-bottom:15px;
-}
-
-.finalMessage p{
-  font-size:15px;
+.music-title{
+    color:#ffd86b;
+    margin:12px 0;
 }
 
 /* ================= FOOTER ================= */
 
-.footer{
-  text-align:center;
-
-  margin-top:45px;
-
-  color:#e9cddd;
-
-  line-height:2.3;
-
-  font-size:14px;
+.final-message{
+    margin-top:45px;
+    font-size:22px;
+    color:#ff9ccc;
 }
 
-.footerHeart{
-  font-size:28px;
-
-  display:block;
-
-  margin-top:10px;
+.footer{
+    margin-top:45px;
+    color:#888;
+    font-size:12px;
 }
 
 /* ================= MOBILE ================= */
 
 @media(max-width:600px){
 
-  .invitation{
-    padding:45px 15px;
-    border-radius:30px;
-  }
+    .welcome-box{
+        padding:30px 10px;
+    }
 
-  .infoGrid{
-    grid-template-columns:1fr;
-  }
+    .welcome-text{
+        font-size:14px;
+    }
 
-  .countdown{
-    gap:6px;
-  }
+    .card-inner{
+        padding:35px 17px;
+    }
 
-  .time{
-    padding:14px 3px;
-  }
+    .countdown{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-  .time b{
-    font-size:22px;
-  }
-
-  .welcomeBox{
-    padding:45px 20px;
-  }
-
+    .info-grid{
+        grid-template-columns:1fr;
+    }
 }
 
 </style>
@@ -925,367 +513,265 @@ body:after{
 
 <body>
 
-<!-- LED BACKGROUND -->
+<!-- BACKGROUND LIGHTS -->
 
-<div class="led led1"></div>
-<div class="led led2"></div>
-<div class="led led3"></div>
-<div class="led led4"></div>
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+<div class="glow glow3"></div>
 
+<!-- SPARKLES -->
 
-<!-- ================= WELCOME ================= -->
+<div class="sparkle" style="left:5%;animation-duration:7s"></div>
+<div class="sparkle" style="left:12%;animation-duration:9s;animation-delay:1s"></div>
+<div class="sparkle" style="left:20%;animation-duration:6s;animation-delay:2s"></div>
+<div class="sparkle" style="left:30%;animation-duration:8s;animation-delay:3s"></div>
+<div class="sparkle" style="left:40%;animation-duration:10s;animation-delay:1s"></div>
+<div class="sparkle" style="left:50%;animation-duration:7s;animation-delay:4s"></div>
+<div class="sparkle" style="left:60%;animation-duration:9s;animation-delay:2s"></div>
+<div class="sparkle" style="left:70%;animation-duration:6s;animation-delay:1s"></div>
+<div class="sparkle" style="left:80%;animation-duration:8s;animation-delay:3s"></div>
+<div class="sparkle" style="left:90%;animation-duration:10s"></div>
+
+/* ================= WELCOME ================= */
 
 <section id="welcome">
 
-  <div class="welcomeBox">
+    <div class="welcome-box">
 
-    <div class="welcomeSmall">
-      بە ناوی خوای گەورە و میهرەبان
+        <div class="small-title shine">
+            بە ناوی خوای گەورە و میهرەبان
+        </div>
+
+        <div class="main-names shine">
+            💍 ئاکۆ ❤️ وەفا 💍
+        </div>
+
+        <p class="welcome-text shine">
+            بە دڵێکی پڕ لە خۆشی و خۆشحاڵی
+            بانگێشتتان دەکەین بۆ ئاهەنگی مارەبڕینی
+            ئاکۆ و وەفا ❤️
+        </p>
+
+        <button class="enter-btn" onclick="startWedding()">
+            💍 چوونە ژوورەوە
+        </button>
+
     </div>
-
-    <div class="welcomeTitle">
-      💍 ئاکۆ ❤️ وەفا 💍
-    </div>
-
-    <div class="welcomeText">
-      بە خۆشحاڵییەکی زۆرەوە
-      بانگتان دەکەین بۆ بەشداریکردن
-      لە شەوی خۆشحاڵییەکەمان ❤️
-    </div>
-
-    <button class="enterBtn" onclick="startWedding()">
-      💍 چوونە ژوورەوە
-    </button>
-
-  </div>
 
 </section>
 
 
-<!-- ================= INTRO ================= -->
+<!-- INTRO -->
 
 <section id="intro">
 
-  <div class="introContent">
+    <div class="intro-content">
 
-    <div class="rings">
+        <div class="rings">
+            💍💍
+        </div>
 
-      <div class="ring ringLeft"></div>
+        <div class="intro-names shine">
+            Ako ❤️ Wafa
+        </div>
 
-      <div class="ring ringRight"></div>
+        <div class="intro-sub shine">
+            پیرۆزە مارەبڕینتان ❤️
+        </div>
 
     </div>
-
-    <div class="hands">
-      🫱🏻‍🫲🏻
-    </div>
-
-    <div class="names">
-      Ako ❤️ Wafa
-    </div>
-
-    <div class="subtitle">
-      پیرۆزە مارەبڕینتان ❤️
-    </div>
-
-  </div>
 
 </section>
 
 
-<!-- ================= MAIN ================= -->
+<!-- MAIN -->
 
-<main id="main">
+<section id="main">
 
-  <div class="invitation">
+<div class="card">
 
-    <div class="ledLine"></div>
+<div class="card-inner">
 
-    <div class="topCrown">
-      ✨💍✨
+    <h1 class="section-title shine">
+        💌 بانگێشتنامە 💌
+    </h1>
+
+    <p class="invite-text shine">
+        بە خۆشحاڵییەکی زۆرەوە
+        بانگێشتتان دەکەین بۆ بەشداریکردن
+        لەو ڕۆژە خۆشەویستانەی ژیانمان.
+    </p>
+
+    <div class="names shine">
+        ئاکۆ ❤️ وەفا
     </div>
 
-    <div class="inviteSmall">
-      بە ناوی خوای گەورە و میهرەبان
-    </div>
-
-    <div class="mainTitle">
-      بانگێشتنامە
-    </div>
-
-    <div class="divider"></div>
-
-
-    <!-- GUEST MESSAGE -->
-
-    <div class="welcomeGuests">
-
-      بەڕێزان و خۆشەویستان ❤️
-
-      <br><br>
-
-      بە دڵێکی پڕ لە خۆشی و شادی،
-      بە ڕێز و خۆشحاڵییەکی زۆرەوە
-      بانگتان دەکەین بۆ ئەوەی
-      لەگەڵماندا هاوبەشی ئەم شەوە
-      پڕ لە خۆشی و بیرەوەرییە جوانە بن.
-
-      <br><br>
-
-      بوونی ئێوە لەگەڵماندا
-      جوانترین دیارییە بۆ ئێمە،
-      چونکە خۆشی کاتێک جوانتر دەبێت
-      کە لەگەڵ کەسانی خۆشەویستمان
-      هاوبەشی بکەین.
-
-    </div>
-
-
-    <!-- COUPLE -->
-
-    <div class="couple">
-
-      <div class="coupleNames">
-        ئاکۆ
-      </div>
-
-      <span class="love">
-        ❤️
-      </span>
-
-      <div class="coupleNames">
-        وەفا
-      </div>
-
-    </div>
-
-
-    <!-- BEAUTIFUL MESSAGE -->
-
-    <div class="message">
-
-      <strong>
-        ئەمڕۆ دەستپێکی بەشێکی نوێی ژیانمانە...
-      </strong>
-
-      <br><br>
-
-      بە دڵێکی پڕ لە هیوا و خۆشەویستی،
-      هەنگاوێکی نوێ لە ژیانمان دەست پێدەکەین.
-
-      <br>
-
-      هیوادارین ئەم شەوە بۆ ئێمە و بۆ ئێوە
-      ببێتە یەکێک لە جوانترین بیرەوەرییەکان.
-
-      <br><br>
-
-      <strong>
-        بە بوونتان شادیمان تەواو دەبێت ❤️
-      </strong>
-
-    </div>
+    <p class="invite-text shine">
+        لەگەڵ ئامادەبوونتان
+        شادی و خۆشیی ئەم دەستپێکی ژیانە نوێیە
+        لەگەڵمان بەش بکەن.
+    </p>
 
 
     <!-- INFO -->
 
-    <div class="infoGrid">
+    <div class="info-grid">
 
-      <div class="infoBox">
+        <div class="info-box">
 
-        <div class="infoIcon">
-          📅
+            <div class="icon">📅</div>
+
+            <div class="info-title shine">
+                بەروار
+            </div>
+
+            <div class="info-value shine">
+                یەکشەممە<br>
+                20 / 09 / 2026
+            </div>
+
         </div>
 
-        <h3>
-          بەروار
-        </h3>
 
-        <p>
-          یەکشەممە<br>
-          20 / 09 / 2026
-        </p>
+        <div class="info-box">
 
-      </div>
+            <div class="icon">⏰</div>
 
+            <div class="info-title shine">
+                کات
+            </div>
 
-      <div class="infoBox">
+            <div class="info-value shine">
+                8:00 ئێوارە
+            </div>
 
-        <div class="infoIcon">
-          🕗
         </div>
 
-        <h3>
-          کات
-        </h3>
 
-        <p>
-          8:00<br>
-          شێوارە
-        </p>
+        <div class="info-box">
 
-      </div>
+            <div class="icon">🏛️</div>
 
+            <div class="info-title shine">
+                شوێن
+            </div>
 
-      <div class="infoBox">
+            <div class="info-value shine">
+                رۆیال ڤێلا
+            </div>
 
-        <div class="infoIcon">
-          📍
         </div>
 
-        <h3>
-          شوێن
-        </h3>
 
-        <p>
-          رۆیال ڤێلا
-        </p>
+        <div class="info-box">
 
-      </div>
+            <div class="icon">📍</div>
 
+            <div class="info-title shine">
+                ناونیشان
+            </div>
 
-      <div class="infoBox">
+            <div class="info-value shine">
+                شەقامی ١٥٠ مەتری،
+                نزیک مزرەعەی شێخ باز،
+                ڕێگای شەقلاوە
+            </div>
 
-        <div class="infoIcon">
-          🛣️
         </div>
-
-        <h3>
-          ناونیشان
-        </h3>
-
-        <p>
-          شەقامی ١٥٠ مەتری<br>
-          نزیک مزرەعەی شێخ باز<br>
-          رێگای شەقلاوە
-        </p>
-
-      </div>
 
     </div>
 
 
     <!-- QURAN -->
 
-    <div class="verse">
+    <div class="quote">
 
-      <div class="verseTitle">
-        🌙 بە پەیامی پیرۆزی قورئان
-      </div>
+        <div class="shine">
+            وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم
+            مِنْ أَنْفُسِكُمْ أَزْوَاجًا
+            لِتَسْكُنُوا إِلَيْهَا
+            وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+        </div>
 
-      ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم
-      مِّنْ أَنفُسِكُمْ أَزْوَاجًا
-      لِّتَسْكُنُوا إِلَيْهَا
-      وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ
-      إِنَّ فِي ذَٰلِكَ لَآيَاتٍ
-      لِّقَوْمٍ يَتَفَكَّرُونَ ﴾
-
-      <br><br>
-
-      <small>
-        سورەتی الروم – ئایەتی ٢١
-      </small>
+        <small class="shine">
+            سورەتی الروم — ئایەتی ٢١
+        </small>
 
     </div>
 
 
     <!-- COUNTDOWN -->
 
-    <div class="countTitle">
-      ⏳ ماوە بۆ شەوی خۆشحاڵی
-    </div>
+    <h2 class="countdown-title shine">
+        ⏳ ماوەی کات بۆ ئاهەنگەکە
+    </h2>
 
     <div class="countdown">
 
-      <div class="time">
-        <b id="days">0</b>
-        <span>ڕۆژ</span>
-      </div>
+        <div class="time-box">
+            <div id="days" class="time-number">00</div>
+            <div class="time-label">ڕۆژ</div>
+        </div>
 
-      <div class="time">
-        <b id="hours">0</b>
-        <span>کاتژمێر</span>
-      </div>
+        <div class="time-box">
+            <div id="hours" class="time-number">00</div>
+            <div class="time-label">کاتژمێر</div>
+        </div>
 
-      <div class="time">
-        <b id="minutes">0</b>
-        <span>خولەک</span>
-      </div>
+        <div class="time-box">
+            <div id="minutes" class="time-number">00</div>
+            <div class="time-label">خولەک</div>
+        </div>
 
-      <div class="time">
-        <b id="seconds">0</b>
-        <span>چرکە</span>
-      </div>
-
-    </div>
-
-
-    <!-- SONG -->
-
-    <div class="songTitle">
-      🎵 گۆرانیی شەوی خۆشحاڵی
-    </div>
-
-    <div class="song">
-
-      <iframe
-        id="music"
-        src="https://www.youtube.com/embed/iKTjIC7wdUA?autoplay=0&controls=1&rel=0&playsinline=1"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+        <div class="time-box">
+            <div id="seconds" class="time-number">00</div>
+            <div class="time-label">چرکە</div>
+        </div>
 
     </div>
 
 
-    <!-- FINAL MESSAGE -->
+    <!-- MUSIC -->
 
-    <div class="finalMessage">
+    <div class="music-box">
 
-      <h2>
+        <div class="music-icon">
+            🎵
+        </div>
+
+        <div class="music-title shine">
+            گۆرانیی تایبەت بە ئێمە
+        </div>
+
+        <div class="invite-text shine">
+            بە خۆشییەوە گوێ لە گۆرانییەکە بگرن ❤️
+        </div>
+
+    </div>
+
+
+    <div class="final-message shine">
         ❤️ چاوەڕێتانین ❤️
-      </h2>
-
-      <p>
-
-        خۆشحاڵییەکەمان کاتێک تەواو دەبێت
-        کە ئێوەش لەگەڵمان بن.
-
-        <br><br>
-
-        هیوادارین بتوانین شەوێکی پڕ لە
-        خۆشی، پێکەنین، خۆشەویستی و
-        بیرەوەرییە جوانەکان لەگەڵ یەکتر
-        دروست بکەین.
-
-        <br><br>
-
-        بە ڕێز و خۆشەویستییەوە
-        <br>
-
-        <strong>
-          ئاکۆ ❤️ وەفا
-        </strong>
-
-      </p>
-
     </div>
 
-
-    <div class="footer">
-
-      سوپاس بۆ ئەوەی لە خۆشییەکەماندا
-      هاوبەش دەبن 🌹
-
-      <span class="footerHeart">
-        ❤️ ✨ 💍 ✨ ❤️
-      </span>
-
+    <div class="footer shine">
+        ئاکۆ ❤️ وەفا — 2026
     </div>
 
-  </div>
+</div>
 
-</main>
+</div>
+
+</section>
+
+
+<!-- MUSIC -->
+
+<audio id="weddingMusic" preload="auto" loop>
+
+    <source src="music.mp3" type="audio/mpeg">
+
+</audio>
 
 
 <script>
@@ -1294,133 +780,100 @@ body:after{
 
 function startWedding(){
 
-  const welcome =
-  document.getElementById("welcome");
+    const welcome = document.getElementById("welcome");
+    const intro = document.getElementById("intro");
+    const main = document.getElementById("main");
+    const music = document.getElementById("weddingMusic");
 
-  const intro =
-  document.getElementById("intro");
+    /* پەخشکردنی گۆرانی لە هەمان کلیک */
 
-  const music =
-  document.getElementById("music");
+    music.volume = 0.85;
 
-  welcome.classList.add("hide");
+    music.play().catch(function(error){
+        console.log("Audio play blocked:", error);
+    });
 
-  intro.classList.add("show");
+    /* شاردنەوەی welcome */
 
+    welcome.style.display = "none";
 
-  /* Start song from the same user click */
+    /* پیشاندانی intro */
 
-  music.src =
-  "https://www.youtube.com/embed/iKTjIC7wdUA" +
-  "?autoplay=1" +
-  "&mute=0" +
-  "&controls=0" +
-  "&rel=0" +
-  "&playsinline=1";
+    intro.style.display = "flex";
 
-
-  /* Show main invitation */
-
-  setTimeout(function(){
-
-    intro.style.opacity="0";
+    /* دوای 3.5 چرکە intro بشارەوە */
 
     setTimeout(function(){
 
-      intro.style.display="none";
+        intro.style.display = "none";
 
-      document
-      .getElementById("main")
-      .classList.add("show");
+        main.style.display = "block";
 
-      window.scrollTo({
-        top:0,
-        behavior:"smooth"
-      });
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
 
-    },1000);
-
-  },6500);
+    },3500);
 
 }
 
 
 /* ================= COUNTDOWN ================= */
 
-const weddingDate =
-new Date(
-  "September 20, 2026 20:00:00"
-).getTime();
+const weddingDate = new Date("September 20, 2026 20:00:00").getTime();
 
+function updateCountdown(){
 
-function countdown(){
+    const now = new Date().getTime();
 
-  const now =
-  new Date().getTime();
+    const distance = weddingDate - now;
 
-  const distance =
-  weddingDate-now;
+    if(distance <= 0){
 
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
 
-  if(distance<=0){
+        return;
+    }
 
-    document.getElementById("days").innerText="0";
-    document.getElementById("hours").innerText="0";
-    document.getElementById("minutes").innerText="0";
-    document.getElementById("seconds").innerText="0";
+    const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
+    );
 
-    return;
-  }
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24))
+        / (1000 * 60 * 60)
+    );
 
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60))
+        / (1000 * 60)
+    );
 
-  const days =
-  Math.floor(
-    distance/(1000*60*60*24)
-  );
+    const seconds = Math.floor(
+        (distance % (1000 * 60))
+        / 1000
+    );
 
+    document.getElementById("days").innerText =
+        String(days).padStart(2,"0");
 
-  const hours =
-  Math.floor(
-    (distance%(1000*60*60*24))
-    /(1000*60*60)
-  );
+    document.getElementById("hours").innerText =
+        String(hours).padStart(2,"0");
 
+    document.getElementById("minutes").innerText =
+        String(minutes).padStart(2,"0");
 
-  const minutes =
-  Math.floor(
-    (distance%(1000*60*60))
-    /(1000*60)
-  );
-
-
-  const seconds =
-  Math.floor(
-    (distance%(1000*60))
-    /1000
-  );
-
-
-  document.getElementById("days")
-  .innerText=days;
-
-  document.getElementById("hours")
-  .innerText=hours;
-
-  document.getElementById("minutes")
-  .innerText=minutes;
-
-  document.getElementById("seconds")
-  .innerText=seconds;
-
+    document.getElementById("seconds").innerText =
+        String(seconds).padStart(2,"0");
 }
 
+updateCountdown();
 
-countdown();
-
-setInterval(
-  countdown,
-  1000
-);
+setInterval(updateCountdown,1000);
 
 </script>
 
