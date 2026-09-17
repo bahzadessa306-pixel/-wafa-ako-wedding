@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>وەفا & ئاکۆ</title>
 
 <style>
@@ -14,7 +15,7 @@ font-family:sans-serif;
 }
 
 body{
-background:url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200") center/cover no-repeat;
+background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
 min-height:100vh;
 display:flex;
 justify-content:center;
@@ -25,7 +26,7 @@ padding:20px;
 .overlay{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.45);
+background:rgba(0,0,0,.45);
 }
 
 .card{
@@ -33,48 +34,62 @@ position:relative;
 z-index:2;
 width:100%;
 max-width:500px;
-background:rgba(255,255,255,0.12);
+background:rgba(255,255,255,.12);
 backdrop-filter:blur(10px);
+padding:25px;
 border-radius:30px;
-padding:30px;
 text-align:center;
 color:white;
-border:1px solid rgba(255,255,255,0.2);
+border:1px solid rgba(255,255,255,.2);
 }
 
 h1{
-font-size:48px;
-margin-bottom:20px;
+font-size:42px;
+margin-bottom:15px;
 }
 
 .info{
-font-size:24px;
-margin:15px 0;
+font-size:22px;
+margin:12px 0;
 }
 
 .welcome{
 font-size:28px;
 font-weight:bold;
-margin:30px 0;
-line-height:1.6;
+margin:25px 0;
 }
 
 #countdown{
-font-size:32px;
+font-size:28px;
 font-weight:bold;
-margin-top:25px;
-color:#ffd700;
+margin-top:20px;
+color:#ffe082;
 }
 
-.btn{
-display:inline-block;
-margin-top:25px;
-padding:12px 25px;
-background:#d4af37;
-color:white;
+.playBtn{
+background:#ffd54f;
+border:none;
+padding:14px 25px;
+border-radius:50px;
+font-size:20px;
+cursor:pointer;
+margin-top:20px;
+}
+
+.mapBtn{
+display:block;
+margin-top:15px;
+padding:14px;
+background:#ffffff;
+color:#000;
 text-decoration:none;
 border-radius:15px;
-font-size:20px;
+font-weight:bold;
+}
+
+.footer{
+margin-top:20px;
+font-size:18px;
 }
 </style>
 </head>
@@ -88,36 +103,76 @@ font-size:20px;
 <h1>💍 وەفا & ئاکۆ 💍</h1>
 
 <div class="info">📅 20/09/2026</div>
+
 <div class="info">🕗 8:00 PM</div>
+
 <div class="info">📍 شەقڵاوە</div>
 
 <div class="welcome">
-بەخێربێن بۆ ئاهەنگی هاوسەرگیریمان ❤️
+❤️ بەخێربێن بۆ ئاهەنگی هاوسەرگیریمان ❤️
 </div>
 
 <div id="countdown"></div>
 
-<a class="btn" href="#">📍 شوێنی ئاهەنگ</a>
+<button class="playBtn" onclick="playMusic()">
+🎵 گۆرانی دەستپێبکە
+</button>
+
+<a class="mapBtn"
+href="https://maps.google.com"
+target="_blank">
+📍 شوێنی ئاهەنگ
+</a>
+
+<div class="footer">
+لەگەڵ خۆشەویستی ❤️
+</div>
+
+<audio id="music" loop>
+<source src="YOUR-MUSIC.mp3" type="audio/mpeg">
+</audio>
 
 </div>
 
 <script>
-var countDownDate = new Date("Sep 20, 2026 20:00:00").getTime();
 
-setInterval(function() {
+function playMusic(){
+document.getElementById("music").play();
+}
+
+var countDownDate =
+new Date("Sep 20, 2026 20:00:00").getTime();
+
+setInterval(function(){
 
 var now = new Date().getTime();
-var distance = countDownDate - now;
 
-var days = Math.floor(distance / (1000*60*60*24));
-var hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-var minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+var distance =
+countDownDate - now;
 
-document.getElementById("countdown").innerHTML =
-"⏳ " + days + " ڕۆژ " + hours + " کاتژمێر " + minutes + " خولەک";
+var days =
+Math.floor(distance/(1000*60*60*24));
+
+var hours =
+Math.floor((distance%(1000*60*60*24))
+/(1000*60*60));
+
+var minutes =
+Math.floor((distance%(1000*60*60))
+/(1000*60));
+
+document.getElementById("countdown")
+.innerHTML =
+"⏳ " + days +
+" ڕۆژ " +
+hours +
+" کاتژمێر " +
+minutes +
+" خولەک";
 
 },1000);
+
 </script>
 
 </body>
-</html>
+</html>پ
