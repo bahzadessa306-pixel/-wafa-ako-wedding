@@ -4,194 +4,429 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>وەفا & ئاکۆ 💍</title>
+<title>Ako ❤️ Wafa</title>
 
 <style>
-* {
-  box-sizing: border-box;
+
+*{
+  box-sizing:border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
+body{
+  font-family:Arial,sans-serif;
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+
   background:
     linear-gradient(
-      rgba(20, 8, 3, .45),
-      rgba(10, 5, 2, .82)
+      rgba(18,8,3,.48),
+      rgba(5,3,2,.82)
     ),
     url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000&q=90")
     center/cover fixed;
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
 }
 
-/* 3D Background */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
+/* =========================
+   BACKGROUND
+========================= */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+
   background:
     radial-gradient(
       circle at 50% 30%,
-      rgba(255,190,90,.18),
-      transparent 35%
-    ),
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.5),
-      transparent 35%,
-      transparent 65%,
-      rgba(0,0,0,.5)
+      rgba(255,203,110,.18),
+      transparent 38%
     );
-  z-index: -2;
+
+  z-index:-2;
 }
 
-.overlay {
-  position: fixed;
-  inset: 0;
+.overlay{
+  position:fixed;
+  inset:0;
   background:
     linear-gradient(
       180deg,
-      rgba(20,8,2,.25),
-      rgba(0,0,0,.7)
+      rgba(20,7,2,.25),
+      rgba(0,0,0,.72)
     );
-  z-index: -1;
+  z-index:-1;
 }
 
-/* ڕووناکیە زێڕینەکان */
-.glow {
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: rgba(255,190,90,.12);
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: -1;
+/* =========================
+   WELCOME
+========================= */
+
+#welcome{
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+
+  padding:25px;
+
+  perspective:1200px;
+
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
 }
 
-.glow1 {
-  top: 5%;
-  left: -100px;
+#welcome.hide{
+  opacity:0;
+  transform:scale(1.25);
+  pointer-events:none;
 }
 
-.glow2 {
-  bottom: 5%;
-  right: -100px;
-}
+/* Welcome title */
 
-/* Welcome */
-.welcome {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 25px;
-  perspective: 1200px;
-}
+.welcomeTitle{
 
-.welcome h1 {
-  font-size: clamp(40px, 8vw, 75px);
-  margin-bottom: 40px;
-  color: #fff;
+  font-size:clamp(40px,8vw,75px);
+
+  color:#fff;
+
+  margin-bottom:45px;
+
   text-shadow:
-    0 2px 2px #8c5a19,
-    0 5px 12px rgba(0,0,0,.8),
+    0 2px 0 #80501a,
+    0 5px 15px rgba(0,0,0,.9),
     0 0 20px #ffd27a,
-    0 0 45px rgba(255,190,90,.6);
-  transform: translateZ(40px);
+    0 0 50px rgba(255,190,80,.5);
+
+  transform:translateZ(50px);
 }
 
-/* Button */
-button {
-  padding: 18px 45px;
-  border: 1px solid rgba(255,215,140,.8);
-  border-radius: 50px;
+/* =========================
+   BUTTON
+========================= */
+
+.enterButton{
+
+  border:none;
+
+  padding:18px 45px;
+
+  border-radius:60px;
+
+  font-size:21px;
+  font-weight:bold;
+
+  color:white;
+
+  cursor:pointer;
 
   background:
     linear-gradient(
       135deg,
-      #8f5b20,
-      #e8b45c,
-      #fff0b0,
-      #b97825
+      #815018,
+      #d69b42,
+      #fff0ad,
+      #c17d28
     );
 
-  color: #fff;
-  font-size: 21px;
-  font-weight: bold;
-  cursor: pointer;
-
   box-shadow:
-    0 8px 20px rgba(0,0,0,.6),
-    inset 0 2px 3px rgba(255,255,255,.6),
-    0 0 25px rgba(255,190,90,.5);
+    0 10px 30px rgba(0,0,0,.7),
+    inset 0 2px 3px rgba(255,255,255,.7),
+    0 0 30px rgba(255,196,90,.45);
 
   text-shadow:
-    0 2px 3px rgba(0,0,0,.5);
+    0 2px 4px rgba(0,0,0,.7);
 
-  transition: .35s;
+  transition:.3s;
 }
 
-button:hover {
+.enterButton:hover{
   transform:
     translateY(-5px)
     scale(1.06);
-
-  box-shadow:
-    0 15px 30px rgba(0,0,0,.7),
-    0 0 40px rgba(255,190,90,.8);
 }
 
-/* Main Card */
-.card {
-  display: none;
-  width: calc(100% - 30px);
-  max-width: 950px;
-  margin: 35px auto 70px;
-  padding: 50px 35px;
+/* =========================
+   RINGS INTRO
+========================= */
 
-  border-radius: 35px;
+#ringIntro{
+
+  position:fixed;
+
+  inset:0;
+
+  display:none;
+
+  justify-content:center;
+  align-items:center;
+
+  flex-direction:column;
 
   background:
+    radial-gradient(
+      circle,
+      rgba(80,45,15,.3),
+      rgba(5,3,2,.96)
+    );
+
+  z-index:100;
+
+  perspective:1200px;
+}
+
+#ringIntro.active{
+  display:flex;
+}
+
+/* Rings */
+
+.rings{
+  position:relative;
+
+  width:250px;
+  height:160px;
+
+  margin-bottom:30px;
+}
+
+/* دو ئەڵقە */
+
+.ring{
+
+  position:absolute;
+
+  width:105px;
+  height:105px;
+
+  border-radius:50%;
+
+  border:
+    10px solid #d89a3d;
+
+  box-shadow:
+
+    inset 0 0 8px #fff0ae,
+
+    0 0 10px #ffe09a,
+
+    0 0 25px rgba(255,193,75,.8),
+
+    0 12px 20px rgba(0,0,0,.8);
+
+  top:25px;
+
+  transition:2s cubic-bezier(.2,.8,.2,1);
+}
+
+.ring::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:-8px;
+
+  border-radius:50%;
+
+  border:
+    2px solid rgba(255,240,180,.8);
+
+}
+
+.ringLeft{
+  left:18px;
+  transform:rotate(-12deg);
+}
+
+.ringRight{
+  right:18px;
+  transform:rotate(12deg);
+}
+
+/* یەکبوونی ئەڵقەکان */
+
+#ringIntro.join .ringLeft{
+  left:72px;
+  transform:
+    rotate(0deg)
+    scale(.92);
+}
+
+#ringIntro.join .ringRight{
+  right:72px;
+  transform:
+    rotate(0deg)
+    scale(.92);
+}
+
+/* قلب */
+
+.ringHeart{
+
+  position:absolute;
+
+  left:50%;
+  top:55px;
+
+  transform:
+    translate(-50%,-50%)
+    scale(0);
+
+  font-size:45px;
+
+  opacity:0;
+
+  color:#ffd77f;
+
+  text-shadow:
+    0 0 15px #ffd77f,
+    0 0 35px rgba(255,190,70,.9);
+
+  transition:
+    1s ease 1.4s;
+}
+
+#ringIntro.join .ringHeart{
+
+  opacity:1;
+
+  transform:
+    translate(-50%,-50%)
+    scale(1);
+}
+
+/* =========================
+   INTRO TEXT
+========================= */
+
+.introText{
+
+  opacity:0;
+
+  transform:
+    translateY(30px)
+    scale(.8);
+
+  transition:
+    1s ease 1.7s;
+}
+
+#ringIntro.join .introText{
+
+  opacity:1;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+.englishNames{
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-style:italic;
+
+  font-size:clamp(35px,8vw,65px);
+
+  color:#fff;
+
+  text-shadow:
+    0 3px 0 #8c571b,
+    0 7px 18px rgba(0,0,0,.9),
+    0 0 20px rgba(255,210,120,.7);
+
+  direction:ltr;
+}
+
+.congrats{
+
+  margin-top:18px;
+
+  font-size:clamp(25px,6vw,40px);
+
+  color:#ffd27a;
+
+  text-shadow:
+    0 2px 5px rgba(0,0,0,.8),
+    0 0 20px rgba(255,190,80,.6);
+}
+
+/* =========================
+   INVITATION
+========================= */
+
+#invitation{
+
+  display:none;
+
+  width:calc(100% - 24px);
+
+  max-width:1000px;
+
+  margin:30px auto 70px;
+
+  padding:45px 30px;
+
+  border-radius:35px;
+
+  background:
+
     linear-gradient(
       145deg,
-      rgba(40,20,8,.55),
-      rgba(15,8,4,.72)
+      rgba(50,27,10,.65),
+      rgba(8,5,3,.78)
     );
 
   border:
-    1px solid rgba(255,210,130,.38);
+    1px solid rgba(255,210,130,.4);
 
-  backdrop-filter: blur(16px);
+  backdrop-filter:blur(15px);
 
   box-shadow:
-    0 35px 100px rgba(0,0,0,.8),
-    inset 0 1px 1px rgba(255,255,255,.2),
-    0 0 45px rgba(255,180,70,.08);
 
-  animation: show 1.5s cubic-bezier(.2,.8,.2,1);
+    0 40px 100px rgba(0,0,0,.9),
+
+    inset 0 1px rgba(255,255,255,.2),
+
+    0 0 50px rgba(255,190,70,.1);
+
+  animation:
+    invitationIn 1.8s cubic-bezier(.2,.8,.2,1);
 }
 
-@keyframes show {
-  from {
-    opacity: 0;
+#invitation.show{
+  display:block;
+}
+
+@keyframes invitationIn{
+
+  from{
+    opacity:0;
+
     transform:
-      translateY(80px)
-      scale(.85)
-      rotateX(15deg);
+      translateY(100px)
+      scale(.75)
+      rotateX(20deg);
   }
 
-  to {
-    opacity: 1;
+  to{
+    opacity:1;
+
     transform:
       translateY(0)
       scale(1)
@@ -199,201 +434,259 @@ button:hover {
   }
 }
 
-/* Names */
-h2 {
-  font-size: clamp(42px, 8vw, 80px);
-  margin: 5px 0 25px;
+/* =========================
+   NAMES
+========================= */
 
-  color: #fff;
+.names{
 
-  text-shadow:
-    0 2px 0 #8a551b,
-    0 4px 0 #633b12,
-    0 7px 15px rgba(0,0,0,.9),
-    0 0 20px rgba(255,210,130,.7);
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-  letter-spacing: 3px;
-}
+  direction:ltr;
 
-h2::after {
-  content: "♡";
-  display: block;
-  font-size: 45px;
-  color: #e9b65b;
-  margin-top: 8px;
+  font-size:clamp(48px,9vw,90px);
+
+  font-style:italic;
+
+  color:white;
+
+  margin:0;
 
   text-shadow:
-    0 0 15px #ffd37b,
-    0 5px 10px rgba(0,0,0,.8);
+
+    0 2px 0 #81501a,
+
+    0 5px 0 #5c370e,
+
+    0 9px 20px rgba(0,0,0,.9),
+
+    0 0 25px rgba(255,205,120,.7);
 }
 
-/* Welcome text */
-.welcomeText {
-  max-width: 750px;
-  margin: 35px auto;
-  font-size: 21px;
-  line-height: 2.2;
+.names span{
+  color:#e9b45c;
+}
 
-  color: #fff;
+/* Heart */
+
+.bigHeart{
+
+  font-size:48px;
+
+  margin:10px;
+
+  color:#ffd27a;
 
   text-shadow:
-    0 2px 5px rgba(0,0,0,.9);
+    0 0 20px #ffd27a,
+    0 0 45px rgba(255,190,70,.7);
 }
 
-.welcomeText:first-letter {
-  color: #ffd27a;
+/* =========================
+   KURDISH TEXT
+========================= */
+
+.kurdishWelcome{
+
+  max-width:750px;
+
+  margin:20px auto 35px;
+
+  font-size:21px;
+
+  line-height:2.2;
+
+  color:#fff;
+
+  text-shadow:
+    0 2px 6px rgba(0,0,0,.9);
 }
 
-/* Golden line */
-.goldLine {
-  width: 70%;
-  max-width: 500px;
-  height: 1px;
-  margin: 25px auto;
+.goldLine{
+
+  width:70%;
+
+  max-width:500px;
+
+  height:1px;
+
+  margin:25px auto;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      #e8b45c,
-      #fff0b0,
-      #e8b45c,
+      #d89b43,
+      #fff1b0,
+      #d89b43,
       transparent
     );
 
   box-shadow:
-    0 0 12px rgba(255,200,100,.7);
+    0 0 15px rgba(255,200,100,.7);
 }
 
-/* Info Grid */
-.infoGrid {
-  display: grid;
+/* =========================
+   INFO
+========================= */
+
+.infoGrid{
+
+  display:grid;
+
   grid-template-columns:
-    repeat(3, 1fr);
+    repeat(3,1fr);
 
-  gap: 18px;
-  margin: 35px 0;
+  gap:18px;
+
+  margin:35px 0;
 }
 
-.info {
-  padding: 25px 15px;
+.info{
 
-  border-radius: 22px;
+  padding:25px 15px;
+
+  border-radius:22px;
 
   background:
     linear-gradient(
       145deg,
       rgba(255,255,255,.08),
-      rgba(0,0,0,.25)
+      rgba(0,0,0,.3)
     );
 
   border:
-    1px solid rgba(255,210,130,.28);
+    1px solid rgba(255,210,130,.3);
 
   box-shadow:
     inset 0 1px rgba(255,255,255,.15),
-    0 12px 30px rgba(0,0,0,.35);
+    0 15px 35px rgba(0,0,0,.5);
 
-  font-size: 19px;
-  line-height: 2;
+  font-size:18px;
 
-  transition: .3s;
+  line-height:2;
+
+  transition:.3s;
 }
 
-.info:hover {
+.info:hover{
+
   transform:
-    translateY(-7px)
-    rotateX(3deg);
+    translateY(-7px);
 
   box-shadow:
-    0 18px 40px rgba(0,0,0,.55),
-    0 0 20px rgba(255,190,90,.15);
+    0 20px 40px rgba(0,0,0,.7),
+    0 0 20px rgba(255,190,80,.15);
 }
 
-.infoIcon {
-  display: block;
-  font-size: 42px;
-  margin-bottom: 10px;
+.icon{
+
+  display:block;
+
+  font-size:43px;
+
+  margin-bottom:8px;
 
   filter:
-    drop-shadow(0 0 8px rgba(255,200,100,.7));
+    drop-shadow(
+      0 0 10px rgba(255,200,100,.8)
+    );
 }
 
-.info strong {
-  color: #ffd27a;
+.info strong{
+  color:#ffd27a;
 }
 
-/* Quran */
-.quran {
-  margin: 40px auto;
-  padding: 30px 25px;
+/* =========================
+   QURAN
+========================= */
 
-  max-width: 800px;
+.quran{
 
-  border-radius: 25px;
+  max-width:800px;
+
+  margin:40px auto;
+
+  padding:30px 22px;
+
+  border-radius:25px;
 
   background:
     linear-gradient(
       145deg,
       rgba(255,200,100,.1),
-      rgba(0,0,0,.28)
+      rgba(0,0,0,.3)
     );
 
   border:
     1px solid rgba(255,215,140,.3);
 
   box-shadow:
-    inset 0 1px rgba(255,255,255,.12),
-    0 20px 40px rgba(0,0,0,.4);
+    inset 0 1px rgba(255,255,255,.1),
+    0 20px 45px rgba(0,0,0,.5);
 }
 
-.quranText {
+.quranText{
+
   font-family:
     "Amiri",
     "Times New Roman",
     serif;
 
-  font-size: 25px;
-  line-height: 2.4;
+  font-size:24px;
 
-  color: #ffe7ad;
+  line-height:2.4;
+
+  color:#ffe8b0;
 
   text-shadow:
     0 2px 5px rgba(0,0,0,.8);
 }
 
-.quranRef {
-  margin-top: 15px;
+.quranRef{
 
-  color: #ffd27a;
-  font-size: 17px;
+  margin-top:12px;
 
-  text-shadow:
-    0 0 10px rgba(255,200,100,.5);
+  color:#ffd27a;
+
+  font-size:16px;
 }
 
-/* Countdown */
-.countdownTitle {
-  color: #ffe1a0;
-  font-size: 21px;
-  margin-top: 40px;
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdownTitle{
+
+  color:#ffe0a0;
+
+  font-size:21px;
+
+  margin-top:40px;
 }
 
-.countdown {
-  display: grid;
+.countdown{
+
+  display:grid;
+
   grid-template-columns:
-    repeat(4, 1fr);
+    repeat(4,1fr);
 
-  gap: 12px;
+  gap:12px;
 
-  max-width: 700px;
-  margin: 20px auto 40px;
+  max-width:700px;
+
+  margin:20px auto 40px;
 }
 
-.timeBox {
-  padding: 20px 8px;
+.timeBox{
 
-  border-radius: 20px;
+  padding:20px 8px;
+
+  border-radius:20px;
 
   background:
     linear-gradient(
@@ -410,65 +703,82 @@ h2::after {
     0 15px 30px rgba(0,0,0,.5);
 }
 
-.timeNumber {
-  display: block;
+.timeNumber{
 
-  font-size: 32px;
-  font-weight: bold;
+  display:block;
 
-  color: #fff;
+  font-size:32px;
+
+  font-weight:bold;
+
+  color:white;
 
   text-shadow:
     0 2px 0 #8c571b,
-    0 4px 10px rgba(0,0,0,.8),
-    0 0 15px rgba(255,200,100,.5);
+    0 5px 12px rgba(0,0,0,.8);
 }
 
-.timeLabel {
-  color: #ffd27a;
-  font-size: 15px;
+.timeLabel{
+
+  color:#ffd27a;
+
+  font-size:15px;
 }
 
-/* Music */
-.musicBox {
-  margin: 35px auto;
-  max-width: 600px;
+/* =========================
+   MUSIC
+========================= */
+
+.musicBox{
+
+  max-width:650px;
+
+  margin:35px auto;
 }
 
-.musicTitle {
-  font-size: 21px;
-  color: #ffd27a;
-  margin-bottom: 15px;
+.musicTitle{
+
+  color:#ffd27a;
+
+  font-size:21px;
+
+  margin-bottom:15px;
 }
 
-.musicBox iframe {
-  width: 100%;
-  height: 100px;
+.musicBox iframe{
 
-  border-radius: 20px;
+  width:100%;
+
+  height:100px;
+
+  border-radius:20px;
 
   border:
     1px solid rgba(255,210,130,.4);
 
   box-shadow:
-    0 20px 45px rgba(0,0,0,.7),
-    0 0 25px rgba(255,190,90,.12);
+    0 20px 45px rgba(0,0,0,.7);
 }
 
-/* Location */
-.locationCard {
-  margin: 35px auto 0;
-  max-width: 700px;
+/* =========================
+   LOCATION
+========================= */
 
-  padding: 30px;
+.location{
 
-  border-radius: 25px;
+  max-width:700px;
+
+  margin:30px auto;
+
+  padding:30px;
+
+  border-radius:25px;
 
   background:
     linear-gradient(
       145deg,
       rgba(255,255,255,.08),
-      rgba(0,0,0,.3)
+      rgba(0,0,0,.35)
     );
 
   border:
@@ -478,56 +788,62 @@ h2::after {
     0 20px 45px rgba(0,0,0,.5);
 }
 
-.locationIcon {
-  font-size: 45px;
+.locationIcon{
+
+  font-size:45px;
 
   filter:
-    drop-shadow(0 0 10px rgba(255,190,90,.7));
+    drop-shadow(
+      0 0 10px rgba(255,190,80,.8)
+    );
 }
 
-.locationTitle {
-  color: #ffd27a;
-  font-size: 23px;
-  margin: 10px;
+.locationTitle{
+
+  color:#ffd27a;
+
+  font-size:23px;
+
+  margin:10px;
 }
 
-.locationText {
-  font-size: 18px;
-  line-height: 2;
+.locationText{
+
+  font-size:18px;
+
+  line-height:2;
 }
 
-/* Bottom */
-.bottomText {
-  margin-top: 45px;
-  font-size: 18px;
-  color: #eee;
+/* =========================
+   BALLOONS
+========================= */
 
-  text-shadow:
-    0 2px 5px rgba(0,0,0,.8);
+.balloons{
+
+  position:fixed;
+
+  inset:0;
+
+  overflow:hidden;
+
+  pointer-events:none;
+
+  z-index:-1;
 }
 
-/* Balloons */
-.balloons {
-  position: fixed;
-  inset: 0;
+.balloon{
 
-  pointer-events: none;
-  overflow: hidden;
+  position:absolute;
 
-  z-index: -1;
-}
+  bottom:-150px;
 
-.balloon {
-  position: absolute;
+  width:65px;
 
-  bottom: -150px;
+  height:85px;
 
-  width: 65px;
-  height: 85px;
+  border-radius:50%;
 
-  border-radius: 50%;
-
-  opacity: .55;
+  opacity:.35;
 
   animation:
     fly 14s linear infinite;
@@ -537,166 +853,202 @@ h2::after {
     0 0 25px rgba(255,255,255,.2);
 }
 
-.balloon::after {
-  content: "";
+.balloon::after{
 
-  position: absolute;
+  content:"";
 
-  width: 2px;
-  height: 100px;
+  position:absolute;
+
+  width:2px;
+
+  height:100px;
 
   background:
     rgba(255,255,255,.5);
 
-  left: 50%;
-  top: 84px;
+  left:50%;
+
+  top:84px;
 }
 
-.b1 {
-  left: 8%;
-  background: #d89b42;
+.b1{
+  left:8%;
+  background:#d89b42;
 }
 
-.b2 {
-  left: 25%;
-  background: #f0c96b;
-  animation-delay: 3s;
+.b2{
+  left:25%;
+  background:#f0c96b;
+  animation-delay:3s;
 }
 
-.b3 {
-  left: 45%;
-  background: #c58b50;
-  animation-delay: 6s;
+.b3{
+  left:45%;
+  background:#c58b50;
+  animation-delay:6s;
 }
 
-.b4 {
-  left: 67%;
-  background: #e5b66a;
-  animation-delay: 2s;
+.b4{
+  left:67%;
+  background:#e5b66a;
+  animation-delay:2s;
 }
 
-.b5 {
-  left: 85%;
-  background: #b97935;
-  animation-delay: 5s;
+.b5{
+  left:85%;
+  background:#b97935;
+  animation-delay:5s;
 }
 
-@keyframes fly {
+@keyframes fly{
 
-  0% {
+  0%{
     transform:
       translateY(0)
       rotate(-8deg);
   }
 
-  50% {
+  50%{
     transform:
       translateY(-55vh)
       rotate(8deg);
   }
 
-  100% {
+  100%{
     transform:
       translateY(-120vh)
       rotate(-8deg);
   }
 }
 
-/* Mobile */
-@media (max-width: 700px) {
+/* =========================
+   MOBILE
+========================= */
 
-  .card {
-    padding: 35px 18px;
+@media(max-width:700px){
+
+  #invitation{
+    padding:35px 16px;
   }
 
-  .infoGrid {
+  .infoGrid{
+    grid-template-columns:1fr;
+  }
+
+  .countdown{
     grid-template-columns:
-      1fr;
+      repeat(2,1fr);
   }
 
-  .countdown {
-    grid-template-columns:
-      repeat(2, 1fr);
+  .kurdishWelcome{
+    font-size:18px;
   }
 
-  .welcomeText {
-    font-size: 18px;
+  .quranText{
+    font-size:20px;
   }
 
-  .quranText {
-    font-size: 20px;
+  .englishNames{
+    font-size:40px;
   }
 
-  .info {
-    font-size: 17px;
+  .ring{
+    width:90px;
+    height:90px;
+    border-width:8px;
   }
 
-  .musicBox iframe {
-    height: 90px;
+  #ringIntro.join .ringLeft{
+    left:80px;
+  }
+
+  #ringIntro.join .ringRight{
+    right:80px;
   }
 }
 
-@media (max-width: 400px) {
-
-  h2 {
-    font-size: 38px;
-  }
-
-  .welcome h1 {
-    font-size: 38px;
-  }
-
-  .countdown {
-    gap: 8px;
-  }
-
-  .timeNumber {
-    font-size: 27px;
-  }
-}
 </style>
 </head>
+
 
 <body>
 
 <div class="overlay"></div>
 
-<div class="glow glow1"></div>
-<div class="glow glow2"></div>
 
-<!-- بالۆنەکان -->
-<div class="balloons">
-  <div class="balloon b1"></div>
-  <div class="balloon b2"></div>
-  <div class="balloon b3"></div>
-  <div class="balloon b4"></div>
-  <div class="balloon b5"></div>
-</div>
+<!-- =========================
+     WELCOME PAGE
+========================= -->
 
-<!-- پەڕەی سەرەتا -->
-<div class="welcome" id="welcome">
+<div id="welcome">
 
-  <h1>
+  <div class="welcomeTitle">
     💍 وەفا & ئاکۆ 💍
-  </h1>
+  </div>
 
-  <button onclick="enterSite()">
+  <button
+    class="enterButton"
+    onclick="startWedding()">
+
     💍 چوونە ژوورەوە
+
   </button>
 
 </div>
 
 
-<!-- ناوەڕۆکی سەرەکی -->
-<div class="card" id="card">
+<!-- =========================
+     RINGS INTRO
+========================= -->
 
-  <h2>
-    وەفا & ئاکۆ
-  </h2>
+<div id="ringIntro">
+
+  <div class="rings">
+
+    <div class="ring ringLeft"></div>
+
+    <div class="ring ringRight"></div>
+
+    <div class="ringHeart">
+      ❤️
+    </div>
+
+  </div>
 
 
-  <!-- بەخێرهاتن -->
-  <div class="welcomeText">
+  <div class="introText">
+
+    <div class="englishNames">
+      Ako ❤️ Wafa
+    </div>
+
+    <div class="congrats">
+      پیرۆزە مارەبڕینتان ❤️
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     INVITATION
+========================= -->
+
+<div id="invitation">
+
+
+  <h1 class="names">
+    Ako <span>❤️</span> Wafa
+  </h1>
+
+
+  <div class="bigHeart">
+    💍
+  </div>
+
+
+  <div class="kurdishWelcome">
 
     ❤️ بەخێربێن بۆ ئاهەنگی مەرەبڕینمان ❤️
 
@@ -720,14 +1072,20 @@ h2::after {
   <div class="goldLine"></div>
 
 
-  <!-- زانیارییەکان -->
+  <!-- INFO -->
+
   <div class="infoGrid">
+
 
     <div class="info">
 
-      <span class="infoIcon">📅</span>
+      <span class="icon">
+        📅
+      </span>
 
-      <strong>بەروار</strong>
+      <strong>
+        بەروار
+      </strong>
 
       <br>
 
@@ -738,9 +1096,13 @@ h2::after {
 
     <div class="info">
 
-      <span class="infoIcon">🕗</span>
+      <span class="icon">
+        🕗
+      </span>
 
-      <strong>کات</strong>
+      <strong>
+        کات
+      </strong>
 
       <br>
 
@@ -751,9 +1113,13 @@ h2::after {
 
     <div class="info">
 
-      <span class="infoIcon">📍</span>
+      <span class="icon">
+        📍
+      </span>
 
-      <strong>شوێن</strong>
+      <strong>
+        شوێن
+      </strong>
 
       <br>
 
@@ -773,10 +1139,12 @@ h2::after {
 
     </div>
 
+
   </div>
 
 
-  <!-- ئایەتی قورئان -->
+  <!-- QURAN -->
+
   <div class="quran">
 
     <div class="quranText">
@@ -797,7 +1165,8 @@ h2::after {
   </div>
 
 
-  <!-- Countdown -->
+  <!-- COUNTDOWN -->
+
   <div class="countdownTitle">
 
     ⏳ ماوەی ماوە بۆ ئاهەنگەکە
@@ -808,29 +1177,69 @@ h2::after {
   <div class="countdown">
 
     <div class="timeBox">
-      <span class="timeNumber" id="days">0</span>
-      <span class="timeLabel">ڕۆژ</span>
+
+      <span
+        class="timeNumber"
+        id="days">
+        0
+      </span>
+
+      <span class="timeLabel">
+        ڕۆژ
+      </span>
+
     </div>
 
-    <div class="timeBox">
-      <span class="timeNumber" id="hours">0</span>
-      <span class="timeLabel">کاتژمێر</span>
-    </div>
 
     <div class="timeBox">
-      <span class="timeNumber" id="minutes">0</span>
-      <span class="timeLabel">خولەک</span>
+
+      <span
+        class="timeNumber"
+        id="hours">
+        0
+      </span>
+
+      <span class="timeLabel">
+        کاتژمێر
+      </span>
+
     </div>
 
+
     <div class="timeBox">
-      <span class="timeNumber" id="seconds">0</span>
-      <span class="timeLabel">چرکە</span>
+
+      <span
+        class="timeNumber"
+        id="minutes">
+        0
+      </span>
+
+      <span class="timeLabel">
+        خولەک
+      </span>
+
+    </div>
+
+
+    <div class="timeBox">
+
+      <span
+        class="timeNumber"
+        id="seconds">
+        0
+      </span>
+
+      <span class="timeLabel">
+        چرکە
+      </span>
+
     </div>
 
   </div>
 
 
-  <!-- موزیک -->
+  <!-- MUSIC -->
+
   <div class="musicBox">
 
     <div class="musicTitle">
@@ -848,8 +1257,9 @@ h2::after {
   </div>
 
 
-  <!-- شوێن -->
-  <div class="locationCard">
+  <!-- LOCATION -->
+
+  <div class="location">
 
     <div class="locationIcon">
       📍
@@ -883,7 +1293,7 @@ h2::after {
   <div class="goldLine"></div>
 
 
-  <div class="bottomText">
+  <div class="kurdishWelcome">
 
     بەهیوای بەسەرھاتن و ڕۆژێکی تێر لە خۆشی و شادی ❤️
 
@@ -892,37 +1302,115 @@ h2::after {
 </div>
 
 
+<!-- =========================
+     BALLOONS
+========================= -->
+
+<div class="balloons">
+
+  <div class="balloon b1"></div>
+  <div class="balloon b2"></div>
+  <div class="balloon b3"></div>
+  <div class="balloon b4"></div>
+  <div class="balloon b5"></div>
+
+</div>
+
+
 <script>
 
-/* چوونە ژوورەوە + موزیک */
+/* =========================
+   START WEDDING
+========================= */
 
-function enterSite() {
+function startWedding(){
 
-  document.getElementById("welcome").style.display = "none";
+  const welcome =
+    document.getElementById("welcome");
 
-  document.getElementById("card").style.display = "block";
+  const intro =
+    document.getElementById("ringIntro");
 
-  var iframe =
+  const invitation =
+    document.getElementById("invitation");
+
+  const iframe =
     document.getElementById("youtubeMusic");
 
-  iframe.contentWindow.postMessage(
-    JSON.stringify({
-      event: "command",
-      func: "playVideo",
-      args: []
-    }),
-    "*"
-  );
+
+  /* Welcome disappears */
+
+  welcome.classList.add("hide");
+
+
+  setTimeout(function(){
+
+    welcome.style.display="none";
+
+    intro.classList.add("active");
+
+  },1000);
+
+
+  /* Rings move together */
+
+  setTimeout(function(){
+
+    intro.classList.add("join");
+
+  },500);
+
+
+  /* Open invitation */
+
+  setTimeout(function(){
+
+    intro.style.opacity="0";
+
+    intro.style.transform="scale(1.3)";
+
+  },3900);
+
+
+  setTimeout(function(){
+
+    intro.style.display="none";
+
+    invitation.classList.add("show");
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+
+    /* Play YouTube */
+
+    iframe.contentWindow.postMessage(
+      JSON.stringify({
+        event:"command",
+        func:"playVideo",
+        args:[]
+      }),
+      "*"
+    );
+
+  },4800);
+
 }
 
 
-/* Countdown */
+/* =========================
+   COUNTDOWN
+========================= */
 
 var target =
-  new Date("September 20, 2026 20:00:00").getTime();
+  new Date(
+    "September 20, 2026 20:00:00"
+  ).getTime();
 
 
-setInterval(function() {
+setInterval(function(){
 
   var now =
     new Date().getTime();
@@ -931,68 +1419,72 @@ setInterval(function() {
     target - now;
 
 
-  if (distance <= 0) {
+  if(distance <= 0){
 
-    document.getElementById("days").innerHTML = "🎉";
+    document.getElementById("days")
+      .innerHTML="🎉";
 
-    document.getElementById("hours").innerHTML = "🎉";
+    document.getElementById("hours")
+      .innerHTML="🎉";
 
-    document.getElementById("minutes").innerHTML = "🎉";
+    document.getElementById("minutes")
+      .innerHTML="🎉";
 
-    document.getElementById("seconds").innerHTML = "🎉";
+    document.getElementById("seconds")
+      .innerHTML="🎉";
 
     return;
-
   }
 
 
   var days =
     Math.floor(
       distance /
-      (1000 * 60 * 60 * 24)
+      (1000*60*60*24)
     );
 
 
   var hours =
     Math.floor(
       (distance %
-      (1000 * 60 * 60 * 24))
+      (1000*60*60*24))
       /
-      (1000 * 60 * 60)
+      (1000*60*60)
     );
 
 
   var minutes =
     Math.floor(
       (distance %
-      (1000 * 60 * 60))
+      (1000*60*60))
       /
-      (1000 * 60)
+      (1000*60)
     );
 
 
   var seconds =
     Math.floor(
       (distance %
-      (1000 * 60))
+      (1000*60))
       /
       1000
     );
 
 
-  document.getElementById("days").innerHTML =
-    days;
+  document.getElementById("days")
+    .innerHTML=days;
 
-  document.getElementById("hours").innerHTML =
-    hours;
+  document.getElementById("hours")
+    .innerHTML=hours;
 
-  document.getElementById("minutes").innerHTML =
-    minutes;
+  document.getElementById("minutes")
+    .innerHTML=minutes;
 
-  document.getElementById("seconds").innerHTML =
-    seconds;
+  document.getElementById("seconds")
+    .innerHTML=seconds;
 
-}, 1000);
+
+},1000);
 
 </script>
 
