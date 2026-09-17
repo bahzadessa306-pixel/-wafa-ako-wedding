@@ -3,2007 +3,699 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Ako ❤️ Wafa</title>
 
-<style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<style>
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html,body{
-  margin:0;
-  padding:0;
   width:100%;
   min-height:100%;
+  font-family:'Noto Kufi Arabic',sans-serif;
+  background:#050509;
+  color:white;
+  overflow-x:hidden;
 }
 
 body{
-  font-family:Arial,sans-serif;
-  color:white;
-  text-align:center;
-  overflow-x:hidden;
-
-  background:
-    linear-gradient(
-      rgba(20,8,3,.45),
-      rgba(5,3,2,.85)
-    ),
-    url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000&q=90")
-    center/cover fixed;
+  min-height:100vh;
 }
 
-.overlay{
+/* BACKGROUND */
+body::before{
+  content:"";
   position:fixed;
   inset:0;
-
+  z-index:-3;
   background:
-    radial-gradient(
-      circle at center,
-      rgba(255,190,80,.12),
-      transparent 40%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(20,7,2,.2),
-      rgba(0,0,0,.75)
-    );
-
-  z-index:-1;
+    linear-gradient(135deg,rgba(0,0,0,.55),rgba(30,0,20,.35)),
+    url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=95")
+    center/cover no-repeat;
+  filter:saturate(1.15);
+  transform:scale(1.03);
 }
 
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 50% 40%,transparent 10%,rgba(0,0,0,.35) 75%),
+    linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.7));
+}
 
-/* =====================================================
-   WELCOME
-===================================================== */
+/* LED LIGHTS */
+.led{
+  position:fixed;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  filter:blur(70px);
+  opacity:.5;
+  z-index:-1;
+  pointer-events:none;
+  animation:ledMove 6s ease-in-out infinite alternate;
+}
 
+.led.one{
+  background:#ff3eb5;
+  top:-100px;
+  right:-80px;
+}
+
+.led.two{
+  background:#4c8dff;
+  bottom:-100px;
+  left:-80px;
+  animation-delay:2s;
+}
+
+@keyframes ledMove{
+  from{transform:scale(.8) translate(0,0)}
+  to{transform:scale(1.25) translate(30px,-20px)}
+}
+
+/* WELCOME */
 #welcome{
-  min-height:100vh;
-
+  position:fixed;
+  inset:0;
+  z-index:20;
   display:flex;
   justify-content:center;
   align-items:center;
-  flex-direction:column;
-
-  padding:25px;
-
-  transition:
-    opacity 1s ease,
-    transform 1s ease;
+  text-align:center;
+  background:
+    linear-gradient(135deg,rgba(0,0,0,.72),rgba(25,0,18,.65)),
+    url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=95")
+    center/cover;
+  transition:opacity 1s ease,visibility 1s ease;
 }
 
 #welcome.hide{
   opacity:0;
-  transform:scale(1.2);
+  visibility:hidden;
   pointer-events:none;
+}
+
+.welcomeBox{
+  width:min(90%,600px);
+  padding:45px 25px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:35px;
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(15px);
+  box-shadow:
+    0 0 25px rgba(255,80,190,.4),
+    0 0 80px rgba(80,130,255,.2),
+    inset 0 0 35px rgba(255,255,255,.05);
 }
 
 .welcomeTitle{
-  font-size:clamp(42px,8vw,75px);
-
-  color:white;
-
-  margin-bottom:45px;
-
+  font-size:clamp(28px,7vw,55px);
+  font-weight:800;
   text-shadow:
-    0 3px 0 #80501a,
-    0 7px 18px rgba(0,0,0,.9),
-    0 0 25px #ffd27a,
-    0 0 50px rgba(255,190,80,.6);
+    0 0 10px #fff,
+    0 0 25px #ff4db8,
+    0 0 50px #ff4db8;
+  margin-bottom:35px;
 }
 
-.enterButton{
-  padding:18px 48px;
-
-  border:none;
-  border-radius:60px;
-
+.enterBtn{
+  border:0;
   color:white;
-
-  font-size:21px;
-  font-weight:bold;
-
+  font-family:inherit;
+  font-size:18px;
+  font-weight:700;
+  padding:17px 35px;
+  border-radius:50px;
   cursor:pointer;
-
-  background:
-    linear-gradient(
-      135deg,
-      #805018,
-      #d79a3e,
-      #fff0ad,
-      #bd7925
-    );
-
+  background:linear-gradient(90deg,#ff279f,#7d5cff,#20bfff);
   box-shadow:
-    0 12px 30px rgba(0,0,0,.7),
-    inset 0 2px 4px rgba(255,255,255,.7),
-    0 0 30px rgba(255,190,80,.5);
-
-  transition:.3s;
+    0 0 15px #ff279f,
+    0 0 35px rgba(125,92,255,.8);
+  animation:pulseBtn 2s infinite;
 }
 
-.enterButton:hover{
-  transform:scale(1.07);
+@keyframes pulseBtn{
+  0%,100%{transform:scale(1);filter:brightness(1)}
+  50%{transform:scale(1.05);filter:brightness(1.35)}
 }
 
-
-/* =====================================================
-   INTRO — LUXURY 3D
-===================================================== */
-
+/* INTRO */
 #intro{
   position:fixed;
   inset:0;
-
+  z-index:15;
   display:none;
-
   justify-content:center;
   align-items:center;
-
-  flex-direction:column;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(120,70,15,.28),
-      rgba(2,2,1,.98)
-    );
-
-  z-index:100;
-
-  opacity:1;
-
-  transition:
-    opacity 1.5s ease,
-    transform 1.5s ease;
-
-  perspective:1800px;
-
   overflow:hidden;
+  background:
+    radial-gradient(circle at center,rgba(255,70,180,.15),transparent 40%),
+    rgba(0,0,0,.72);
 }
 
-#intro.active{
+#intro.show{
   display:flex;
 }
 
-#intro.finish{
-  opacity:0;
-
-  transform:
-    scale(1.18)
-    rotateX(5deg);
-
-  pointer-events:none;
+.introContent{
+  width:100%;
+  text-align:center;
+  perspective:1200px;
 }
 
-
-/* =====================================================
-   LUXURY LIGHT
-===================================================== */
-
-.introLight{
-  position:absolute;
-
-  width:500px;
-  height:500px;
-
-  left:50%;
-  top:45%;
-
-  transform:translate(-50%,-50%);
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,220,140,.22),
-      rgba(255,180,60,.08) 35%,
-      transparent 70%
-    );
-
-  filter:blur(10px);
-
-  animation:
-    luxuryLight 4s ease-in-out infinite;
-}
-
-@keyframes luxuryLight{
-
-  0%,100%{
-    transform:
-      translate(-50%,-50%)
-      scale(.85);
-    opacity:.55;
-  }
-
-  50%{
-    transform:
-      translate(-50%,-50%)
-      scale(1.2);
-    opacity:1;
-  }
-}
-
-
-/* =====================================================
-   RING AREA
-===================================================== */
-
-.ringArea{
-
+/* RINGS */
+.rings{
   position:relative;
-
-  width:380px;
-  height:260px;
-
-  margin-bottom:15px;
-
+  height:180px;
+  margin-bottom:20px;
   transform-style:preserve-3d;
 }
-
-
-/* =====================================================
-   REALISTIC 3D GOLD RINGS
-===================================================== */
 
 .ring{
-
   position:absolute;
-
-  width:150px;
-  height:150px;
-
-  top:45px;
-
+  width:105px;
+  height:105px;
   border-radius:50%;
-
-  /*
-    multi-layer metallic gold
-  */
-
-  background:
-    radial-gradient(
-      circle at 35% 25%,
-      #fff9d5 0%,
-      #ffeaa0 7%,
-      #d9a13d 20%,
-      #8c5418 43%,
-      #e6b856 63%,
-      #fff1a9 76%,
-      #9b641e 100%
-    );
-
-  /*
-    ring hole
-  */
-
-  -webkit-mask:
-    radial-gradient(
-      circle,
-      transparent 0 55%,
-      #000 56% 100%
-    );
-
-  mask:
-    radial-gradient(
-      circle,
-      transparent 0 55%,
-      #000 56% 100%
-    );
-
+  top:35px;
+  border:12px solid #f4c95d;
   box-shadow:
-
-    inset
-    8px
-    8px
-    15px
-    rgba(255,255,255,.75),
-
-    inset
-    -10px
-    -12px
-    20px
-    rgba(50,25,0,.65),
-
-    0 0 8px #fff1ae,
-
-    0 0 25px rgba(255,205,100,.8),
-
-    0 18px 35px rgba(0,0,0,.8);
-
-  transform-style:preserve-3d;
-
-  transition:
-    2.5s cubic-bezier(.16,.82,.18,1);
+    inset 0 0 8px #fff7b0,
+    inset 0 0 20px #a86b00,
+    0 0 8px #fff2a0,
+    0 0 25px #ffd85a,
+    0 0 60px rgba(255,190,40,.7);
+  background:linear-gradient(145deg,#fff3a0,#d99b16,#fff1a0,#b97800);
+  animation:ringJoin 3s cubic-bezier(.2,.8,.2,1) forwards;
 }
-
-
-/*
-   extra metallic edge
-*/
-
-.ring::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:-4px;
-
-  border-radius:50%;
-
-  background:
-    conic-gradient(
-      from 20deg,
-      #70400f,
-      #fff0a8,
-      #b87720,
-      #fff6c5,
-      #8a5316,
-      #f4cc70,
-      #70400f
-    );
-
-  z-index:-1;
-
-  filter:blur(2px);
-}
-
-
-/*
-   3D inner reflection
-*/
 
 .ring::after{
-
   content:"";
-
   position:absolute;
-
-  width:55px;
-  height:20px;
-
-  left:25px;
-  top:18px;
-
+  inset:12px;
   border-radius:50%;
-
-  background:
-    rgba(255,255,255,.7);
-
-  filter:blur(9px);
-
-  transform:
-    rotate(-30deg);
+  border:2px solid rgba(255,255,255,.8);
+  filter:blur(.5px);
 }
 
-
-/* START POSITIONS */
-
-.ringLeft{
-
-  left:0;
-
-  transform:
-    translateX(-30px)
-    rotateY(22deg)
-    rotateZ(-18deg)
-    rotateX(8deg);
+.ring.left{
+  left:calc(50% - 125px);
+  transform:rotateX(65deg) rotateZ(-20deg);
 }
 
-.ringRight{
-
-  right:0;
-
-  transform:
-    translateX(30px)
-    rotateY(-22deg)
-    rotateZ(18deg)
-    rotateX(8deg);
+.ring.right{
+  right:calc(50% - 125px);
+  transform:rotateX(65deg) rotateZ(20deg);
+  animation-delay:.15s;
 }
 
-
-/* =====================================================
-   RINGS JOIN
-===================================================== */
-
-#intro.join .ringLeft{
-
-  left:115px;
-
-  transform:
-    translateX(0)
-    rotateY(0)
-    rotateZ(0)
-    rotateX(0)
-    scale(.92);
-
-  filter:
-    drop-shadow(
-      0 0 25px rgba(255,210,110,.9)
-    );
-}
-
-#intro.join .ringRight{
-
-  right:115px;
-
-  transform:
-    translateX(0)
-    rotateY(0)
-    rotateZ(0)
-    rotateX(0)
-    scale(.92);
-
-  filter:
-    drop-shadow(
-      0 0 25px rgba(255,210,110,.9)
-    );
-}
-
-
-/* =====================================================
-   GOLD PARTICLES
-===================================================== */
-
-.particle{
-
-  position:absolute;
-
-  width:5px;
-  height:5px;
-
-  border-radius:50%;
-
-  background:#ffe8a0;
-
-  box-shadow:
-    0 0 8px #fff0b0,
-    0 0 18px #dca33e;
-
-  opacity:0;
-}
-
-#intro.join .particle{
-  animation:
-    sparkle 2s ease forwards;
-}
-
-.p1{left:20%;top:30%;}
-.p2{left:28%;top:65%;}
-.p3{left:72%;top:30%;}
-.p4{left:80%;top:65%;}
-.p5{left:50%;top:15%;}
-.p6{left:50%;top:85%;}
-
-@keyframes sparkle{
-
+@keyframes ringJoin{
   0%{
     opacity:0;
-    transform:scale(.2) translateY(20px);
+    transform:translateX(0) translateY(80px) rotateX(65deg) rotateZ(0);
   }
-
-  40%{
-    opacity:1;
-  }
-
+  25%{opacity:1}
   100%{
-    opacity:0;
-    transform:scale(1.5) translateY(-50px);
+    opacity:1;
+    transform:translateX(0) translateY(0) rotateX(65deg) rotateZ(0);
   }
 }
 
+.ring.left{
+  animation-name:ringLeft;
+}
 
-/* =====================================================
-   REALISTIC HANDS
-===================================================== */
+.ring.right{
+  animation-name:ringRight;
+}
 
+@keyframes ringLeft{
+  0%{
+    opacity:0;
+    transform:translateX(-220px) translateY(70px) rotateX(65deg) rotateZ(-35deg);
+  }
+  60%{
+    opacity:1;
+    transform:translateX(0) translateY(0) rotateX(65deg) rotateZ(-15deg);
+  }
+  100%{
+    opacity:1;
+    transform:translateX(35px) translateY(0) rotateX(65deg) rotateZ(0);
+  }
+}
+
+@keyframes ringRight{
+  0%{
+    opacity:0;
+    transform:translateX(220px) translateY(70px) rotateX(65deg) rotateZ(35deg);
+  }
+  60%{
+    opacity:1;
+    transform:translateX(0) translateY(0) rotateX(65deg) rotateZ(15deg);
+  }
+  100%{
+    opacity:1;
+    transform:translateX(-35px) translateY(0) rotateX(65deg) rotateZ(0);
+  }
+}
+
+/* HANDS */
 .hands{
-
-  position:absolute;
-
-  left:50%;
-  top:50px;
-
-  width:230px;
-  height:145px;
-
-  transform:
-    translateX(-50%)
-    translateY(100px)
-    scale(.55);
-
   opacity:0;
-
-  transition:
-    1.7s cubic-bezier(.16,.82,.18,1);
-
-  z-index:10;
-
+  font-size:70px;
   filter:
-    drop-shadow(
-      0 20px 20px rgba(0,0,0,.65)
-    );
+    drop-shadow(0 0 8px rgba(255,255,255,.7))
+    drop-shadow(0 0 25px rgba(255,70,180,.6));
+  animation:handsIn 1.5s ease 2.8s forwards;
 }
 
-
-/*
-  Hand 1
-*/
-
-.hand{
-
-  position:absolute;
-
-  width:145px;
-  height:65px;
-
-  top:48px;
-
-  border-radius:
-    45px
-    40px
-    30px
-    25px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #f4c39a 0%,
-      #d99a6c 45%,
-      #a96543 100%
-    );
-
-  box-shadow:
-
-    inset
-    5px
-    5px
-    10px
-    rgba(255,255,255,.25),
-
-    inset
-    -8px
-    -7px
-    12px
-    rgba(90,35,15,.35),
-
-    0 12px 18px rgba(0,0,0,.45);
-
-  transform-origin:center;
-}
-
-
-/* fingers */
-
-.hand::before{
-
-  content:"";
-
-  position:absolute;
-
-  width:115px;
-  height:38px;
-
-  left:15px;
-  top:-18px;
-
-  border-radius:30px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #f6c9a0,
-      #c98258
-    );
-
-  box-shadow:
-    0 -2px 5px rgba(255,255,255,.2);
-}
-
-
-/* thumb */
-
-.hand::after{
-
-  content:"";
-
-  position:absolute;
-
-  width:60px;
-  height:34px;
-
-  right:-22px;
-  top:18px;
-
-  border-radius:30px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #f2bd91,
-      #b9704d
-    );
-
-  transform:rotate(-25deg);
-}
-
-
-/* left hand */
-
-.handLeft{
-
-  left:5px;
-
-  transform:
-    rotate(10deg);
-}
-
-
-/* right hand */
-
-.handRight{
-
-  right:5px;
-
-  transform:
-    scaleX(-1)
-    rotate(10deg);
-}
-
-
-/*
-  realistic cuffs
-*/
-
-.cuff{
-
-  position:absolute;
-
-  width:55px;
-  height:68px;
-
-  top:43px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fffdf4,
-      #ddd7c9,
-      #8e887d
-    );
-
-  box-shadow:
-    inset 0 3px 5px rgba(255,255,255,.7),
-    0 5px 12px rgba(0,0,0,.5);
-
-  z-index:-1;
-}
-
-.cuffLeft{
-  left:-8px;
-  transform:rotate(10deg);
-}
-
-.cuffRight{
-  right:-8px;
-  transform:scaleX(-1) rotate(10deg);
-}
-
-
-/* Hands enter */
-
-#intro.handsIn .hands{
-
-  opacity:1;
-
-  transform:
-    translateX(-50%)
-    translateY(0)
-    scale(1);
-}
-
-
-/* =====================================================
-   HAND GLOW
-===================================================== */
-
-.handGlow{
-
-  position:absolute;
-
-  left:50%;
-  top:120px;
-
-  width:150px;
-  height:150px;
-
-  transform:
-    translate(-50%,-50%)
-    scale(0);
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,230,150,.4),
-      transparent 70%
-    );
-
-  filter:blur(25px);
-
-  opacity:0;
-
-  transition:
-    1.2s ease;
-}
-
-#intro.handsIn .handGlow{
-
-  opacity:1;
-
-  transform:
-    translate(-50%,-50%)
-    scale(1.5);
-}
-
-
-/* =====================================================
-   HEART
-===================================================== */
-
-.heart{
-
-  position:absolute;
-
-  left:50%;
-  top:115px;
-
-  transform:
-    translate(-50%,-50%)
-    scale(0);
-
-  font-size:40px;
-
-  opacity:0;
-
-  color:#ffd77f;
-
-  text-shadow:
-    0 0 15px #ffd77f,
-    0 0 35px rgba(255,190,70,.9);
-
-  transition:
-    1s ease;
-
-  z-index:20;
-}
-
-#intro.handsIn .heart{
-
-  opacity:1;
-
-  transform:
-    translate(-50%,-50%)
-    scale(1);
-}
-
-
-/* =====================================================
-   INTRO TEXT
-===================================================== */
-
-.introText{
-
-  opacity:0;
-
-  transform:
-    translateY(45px)
-    scale(.7);
-
-  transition:
-    1.4s cubic-bezier(.16,.82,.18,1);
-
-  position:relative;
-
-  z-index:20;
-}
-
-#intro.textIn .introText{
-
-  opacity:1;
-
-  transform:
-    translateY(0)
-    scale(1);
-}
-
-.namesEnglish{
-
-  direction:ltr;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-style:italic;
-
-  font-size:
-    clamp(38px,8vw,65px);
-
-  color:white;
-
-  text-shadow:
-    0 3px 0 #80501a,
-    0 7px 18px rgba(0,0,0,.9),
-    0 0 25px rgba(255,210,130,.7),
-    0 0 55px rgba(255,190,70,.45);
-}
-
-.congrats{
-
-  margin-top:18px;
-
-  font-size:
-    clamp(25px,6vw,42px);
-
-  color:#ffd27a;
-
-  text-shadow:
-    0 3px 8px rgba(0,0,0,.9),
-    0 0 20px rgba(255,190,80,.7);
-}
-
-
-/* =====================================================
-   INVITATION
-===================================================== */
-
-#invitation{
-
-  display:none;
-
-  width:
-    calc(100% - 24px);
-
-  max-width:1000px;
-
-  margin:30px auto 70px;
-
-  padding:45px 30px;
-
-  border-radius:35px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(48,25,8,.68),
-      rgba(8,4,2,.82)
-    );
-
-  border:
-    1px solid rgba(255,210,130,.4);
-
-  backdrop-filter:blur(16px);
-
-  box-shadow:
-    0 40px 100px rgba(0,0,0,.9),
-    inset 0 1px rgba(255,255,255,.2),
-    0 0 50px rgba(255,190,70,.1);
-
-  animation:
-    invitationIn 1.8s cubic-bezier(.2,.8,.2,1);
-}
-
-#invitation.show{
-  display:block;
-}
-
-@keyframes invitationIn{
-
+@keyframes handsIn{
   from{
     opacity:0;
-
-    transform:
-      translateY(120px)
-      scale(.7)
-      rotateX(20deg);
+    transform:translateY(60px) scale(.7);
   }
-
   to{
     opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1)
-      rotateX(0);
+    transform:translateY(0) scale(1);
   }
 }
 
+.names{
+  margin-top:15px;
+  opacity:0;
+  font-size:clamp(30px,8vw,60px);
+  font-weight:800;
+  background:linear-gradient(90deg,#fff,#ffd0ed,#fff,#9edcff,#fff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  text-shadow:0 0 25px rgba(255,100,200,.5);
+  animation:textIn 1.2s ease 3.8s forwards;
+}
 
-/* =====================================================
-   INVITATION NAMES
-===================================================== */
-
-.mainNames{
-
-  direction:ltr;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-style:italic;
-
-  font-size:
-    clamp(48px,9vw,90px);
-
-  color:white;
-
-  margin:0;
-
+.subtitle{
+  opacity:0;
+  margin-top:12px;
+  font-size:clamp(18px,4vw,30px);
+  font-weight:700;
+  color:#fff;
   text-shadow:
-    0 3px 0 #81501a,
-    0 6px 0 #5c370e,
-    0 10px 22px rgba(0,0,0,.9),
-    0 0 25px rgba(255,205,120,.7);
+    0 0 8px #fff,
+    0 0 18px #ff52bb,
+    0 0 35px #ff52bb;
+  animation:textIn 1.2s ease 4.5s forwards;
 }
 
-.mainNames span{
-  color:#e9b45c;
+@keyframes textIn{
+  from{
+    opacity:0;
+    transform:translateY(25px) scale(.9);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
 }
 
-.bigHeart{
-  font-size:48px;
-
-  margin:10px;
-
-  color:#ffd27a;
-
-  text-shadow:
-    0 0 20px #ffd27a,
-    0 0 45px rgba(255,190,70,.8);
+/* CARD */
+#card{
+  min-height:100vh;
+  display:none;
+  padding:35px 15px 60px;
+  align-items:center;
+  justify-content:center;
 }
 
-
-/* =====================================================
-   TEXT
-===================================================== */
-
-.kurdishText{
-
-  max-width:760px;
-
-  margin:20px auto 35px;
-
-  font-size:21px;
-
-  line-height:2.2;
-
-  text-shadow:
-    0 2px 6px rgba(0,0,0,.9);
+#card.show{
+  display:flex;
 }
 
-.goldLine{
-
-  width:70%;
-  max-width:500px;
-
-  height:1px;
-
-  margin:25px auto;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #d89b43,
-      #fff1b0,
-      #d89b43,
-      transparent
-    );
-
+.card{
+  width:min(100%,700px);
+  padding:35px 20px;
+  border-radius:35px;
+  background:rgba(5,5,10,.58);
+  border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(18px);
   box-shadow:
-    0 0 15px rgba(255,200,100,.7);
+    0 0 30px rgba(255,80,180,.25),
+    0 0 80px rgba(80,130,255,.15);
+  text-align:center;
+  animation:cardIn 1.2s ease;
 }
 
+@keyframes cardIn{
+  from{
+    opacity:0;
+    transform:translateY(50px) scale(.94);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
 
-/* =====================================================
-   INFO
-===================================================== */
-
-.infoGrid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:18px;
-
-  margin:35px 0;
+.cardTitle{
+  font-size:clamp(28px,7vw,48px);
+  font-weight:800;
+  margin-bottom:20px;
+  text-shadow:0 0 20px #ff58b9;
 }
 
 .info{
-
-  padding:25px 15px;
-
+  margin:18px 0;
+  padding:18px;
   border-radius:22px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.08),
-      rgba(0,0,0,.32)
-    );
-
-  border:
-    1px solid rgba(255,210,130,.3);
-
-  box-shadow:
-    inset 0 1px rgba(255,255,255,.15),
-    0 15px 35px rgba(0,0,0,.5);
-
-  font-size:18px;
-
-  line-height:2;
-}
-
-.icon{
-
-  display:block;
-
-  font-size:43px;
-
-  margin-bottom:8px;
-
-  filter:
-    drop-shadow(
-      0 0 10px rgba(255,200,100,.8)
-    );
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:inset 0 0 20px rgba(255,255,255,.025);
 }
 
 .info strong{
-  color:#ffd27a;
-}
-
-
-/* =====================================================
-   QURAN
-===================================================== */
-
-.quran{
-
-  max-width:800px;
-
-  margin:40px auto;
-
-  padding:30px 22px;
-
-  border-radius:25px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,200,100,.1),
-      rgba(0,0,0,.3)
-    );
-
-  border:
-    1px solid rgba(255,215,140,.3);
-
-  box-shadow:
-    inset 0 1px rgba(255,255,255,.1),
-    0 20px 45px rgba(0,0,0,.5);
-}
-
-.quranText{
-
-  font-family:
-    "Amiri",
-    "Times New Roman",
-    serif;
-
-  font-size:24px;
-
-  line-height:2.4;
-
-  color:#ffe8b0;
-}
-
-.quranRef{
-
-  margin-top:12px;
-
-  color:#ffd27a;
-
-  font-size:16px;
-}
-
-
-/* =====================================================
-   COUNTDOWN
-===================================================== */
-
-.countdownTitle{
-
-  color:#ffe0a0;
-
-  font-size:21px;
-
-  margin-top:40px;
-}
-
-.countdown{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:12px;
-
-  max-width:700px;
-
-  margin:20px auto 40px;
-}
-
-.timeBox{
-
-  padding:20px 8px;
-
-  border-radius:20px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,190,80,.15),
-      rgba(0,0,0,.35)
-    );
-
-  border:
-    1px solid rgba(255,210,130,.35);
-
-  box-shadow:
-    inset 0 1px rgba(255,255,255,.15),
-    0 15px 30px rgba(0,0,0,.5);
-}
-
-.timeNumber{
-
   display:block;
-
-  font-size:32px;
-
-  font-weight:bold;
-
-  color:white;
-
-  text-shadow:
-    0 2px 0 #8c571b,
-    0 5px 12px rgba(0,0,0,.8);
+  font-size:19px;
+  margin-bottom:7px;
+  color:#ffd7ef;
 }
 
-.timeLabel{
-
-  color:#ffd27a;
-
-  font-size:15px;
-}
-
-
-/* =====================================================
-   MUSIC
-===================================================== */
-
-.musicBox{
-
-  max-width:650px;
-
-  margin:35px auto;
-}
-
-.musicTitle{
-
-  color:#ffd27a;
-
-  font-size:21px;
-
-  margin-bottom:15px;
-}
-
-.musicBox iframe{
-
-  width:100%;
-
-  height:100px;
-
-  border-radius:20px;
-
-  border:
-    1px solid rgba(255,210,130,.4);
-
-  box-shadow:
-    0 20px 45px rgba(0,0,0,.7);
-}
-
-
-/* =====================================================
-   LOCATION
-===================================================== */
-
-.location{
-
-  max-width:700px;
-
-  margin:30px auto;
-
-  padding:30px;
-
-  border-radius:25px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.08),
-      rgba(0,0,0,.35)
-    );
-
-  border:
-    1px solid rgba(255,210,130,.3);
-
-  box-shadow:
-    0 20px 45px rgba(0,0,0,.5);
-}
-
-.locationIcon{
-
-  font-size:45px;
-
-  filter:
-    drop-shadow(
-      0 0 10px rgba(255,190,80,.8)
-    );
-}
-
-.locationTitle{
-
-  color:#ffd27a;
-
-  font-size:23px;
-
-  margin:10px;
-}
-
-.locationText{
-
-  font-size:18px;
-
+.info span{
+  font-size:17px;
   line-height:2;
 }
 
+.verse{
+  margin:25px 0;
+  padding:22px;
+  border-radius:25px;
+  background:linear-gradient(
+    135deg,
+    rgba(255,60,170,.1),
+    rgba(80,130,255,.1)
+  );
+  border:1px solid rgba(255,255,255,.15);
+  line-height:2.2;
+  font-size:16px;
+}
 
-/* =====================================================
-   BALLOONS
-===================================================== */
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin:25px 0;
+}
 
-.balloons{
+.timeBox{
+  padding:13px 5px;
+  border-radius:18px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 0 15px rgba(255,70,180,.1);
+}
 
-  position:fixed;
+.timeBox b{
+  display:block;
+  font-size:25px;
+}
 
-  inset:0;
+.timeBox small{
+  font-size:11px;
+  color:#ddd;
+}
 
+.song{
+  margin-top:25px;
   overflow:hidden;
-
-  pointer-events:none;
-
-  z-index:-1;
+  border-radius:22px;
+  box-shadow:0 0 25px rgba(255,60,180,.2);
 }
 
-.balloon{
-
-  position:absolute;
-
-  bottom:-150px;
-
-  width:65px;
-  height:85px;
-
-  border-radius:50%;
-
-  opacity:.35;
-
-  animation:
-    fly 14s linear infinite;
-
-  box-shadow:
-    inset -12px -12px 20px rgba(0,0,0,.3),
-    0 0 25px rgba(255,255,255,.2);
+.song iframe{
+  width:100%;
+  height:80px;
+  border:0;
 }
 
-.balloon::after{
-
-  content:"";
-
-  position:absolute;
-
-  width:2px;
-  height:100px;
-
-  background:
-    rgba(255,255,255,.5);
-
-  left:50%;
-  top:84px;
+.footer{
+  margin-top:25px;
+  color:#ffd3eb;
+  font-size:14px;
 }
 
-.b1{
-  left:8%;
-  background:#d89b42;
-}
-
-.b2{
-  left:25%;
-  background:#f0c96b;
-  animation-delay:3s;
-}
-
-.b3{
-  left:45%;
-  background:#c58b50;
-  animation-delay:6s;
-}
-
-.b4{
-  left:67%;
-  background:#e5b66a;
-  animation-delay:2s;
-}
-
-.b5{
-  left:85%;
-  background:#b97935;
-  animation-delay:5s;
-}
-
-@keyframes fly{
-
-  0%{
-    transform:
-      translateY(0)
-      rotate(-8deg);
+/* MOBILE */
+@media(max-width:500px){
+  .ring{
+    width:85px;
+    height:85px;
+    border-width:10px;
   }
 
-  50%{
-    transform:
-      translateY(-55vh)
-      rotate(8deg);
+  .ring.left{
+    left:calc(50% - 105px);
   }
 
-  100%{
-    transform:
-      translateY(-120vh)
-      rotate(-8deg);
-  }
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:700px){
-
-  #invitation{
-    padding:35px 16px;
-  }
-
-  .infoGrid{
-    grid-template-columns:1fr;
-  }
-
-  .countdown{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .kurdishText{
-    font-size:18px;
-  }
-
-  .quranText{
-    font-size:20px;
-  }
-
-  .namesEnglish{
-    font-size:40px;
-  }
-
-  .ringArea{
-    transform:scale(.82);
-  }
-
-  #intro.join .ringLeft{
-    left:115px;
-  }
-
-  #intro.join .ringRight{
-    right:115px;
+  .ring.right{
+    right:calc(50% - 105px);
   }
 
   .hands{
-    transform:
-      translateX(-50%)
-      translateY(100px)
-      scale(.75);
+    font-size:55px;
   }
 
+  .card{
+    padding:28px 14px;
+  }
+
+  .info span{
+    font-size:15px;
+  }
 }
-
-
-/* =====================================================
-   VERY SMALL MOBILE
-===================================================== */
-
-@media(max-width:420px){
-
-  .ringArea{
-    transform:scale(.68);
-  }
-
-  .hands{
-    transform:
-      translateX(-50%)
-      translateY(100px)
-      scale(.62);
-  }
-
-  #intro.join .ringLeft{
-    left:115px;
-  }
-
-  #intro.join .ringRight{
-    right:115px;
-  }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
-<div class="overlay"></div>
+<div class="led one"></div>
+<div class="led two"></div>
 
+<!-- WELCOME -->
+<section id="welcome">
+  <div class="welcomeBox">
+    <div class="welcomeTitle">
+      💍 وەفا & ئاکۆ 💍
+    </div>
 
-<!-- =====================================================
-     WELCOME
-===================================================== -->
-
-<div id="welcome">
-
-  <div class="welcomeTitle">
-    💍 وەفا & ئاکۆ 💍
+    <button class="enterBtn" onclick="startWedding()">
+      💍 چوونە ژوورەوە
+    </button>
   </div>
+</section>
 
-  <button
-    class="enterButton"
-    onclick="startWedding()">
+<!-- INTRO -->
+<section id="intro">
 
-    💍 چوونە ژوورەوە
+  <div class="introContent">
 
-  </button>
-
-</div>
-
-
-<!-- =====================================================
-     INTRO
-===================================================== -->
-
-<div id="intro">
-
-  <div class="introLight"></div>
-
-
-  <div class="ringArea">
-
-    <!-- GOLD 3D RINGS -->
-
-    <div class="ring ringLeft"></div>
-
-    <div class="ring ringRight"></div>
-
-
-    <!-- GOLD PARTICLES -->
-
-    <div class="particle p1"></div>
-    <div class="particle p2"></div>
-    <div class="particle p3"></div>
-    <div class="particle p4"></div>
-    <div class="particle p5"></div>
-    <div class="particle p6"></div>
-
-
-    <!-- HANDS -->
+    <div class="rings">
+      <div class="ring left"></div>
+      <div class="ring right"></div>
+    </div>
 
     <div class="hands">
-
-      <div class="cuff cuffLeft"></div>
-
-      <div class="hand handLeft"></div>
-
-      <div class="cuff cuffRight"></div>
-
-      <div class="hand handRight"></div>
-
+      🫱🏻‍🫲🏻
     </div>
 
-
-    <div class="handGlow"></div>
-
-
-    <div class="heart">
-      ❤️
-    </div>
-
-  </div>
-
-
-  <!-- INTRO TEXT -->
-
-  <div class="introText">
-
-    <div class="namesEnglish">
+    <div class="names">
       Ako ❤️ Wafa
     </div>
 
-    <div class="congrats">
+    <div class="subtitle">
       پیرۆزە مارەبڕینتان ❤️
     </div>
 
   </div>
 
-</div>
+</section>
 
+<!-- CARD -->
+<section id="card">
 
-<!-- =====================================================
-     INVITATION
-===================================================== -->
+  <div class="card">
 
-<div id="invitation">
-
-  <h1 class="mainNames">
-    Ako <span>❤️</span> Wafa
-  </h1>
-
-  <div class="bigHeart">
-    💍
-  </div>
-
-
-  <div class="kurdishText">
-
-    ❤️ بەخێربێن بۆ ئاهەنگی مەرەبڕینمان ❤️
-
-    <br>
-
-    بە هاتنی ئێوە زۆر خۆشحاڵ دەبین،
-
-    <br>
-
-    و بە بوونی ئێوە جوانی و خۆشیی ئەم شەوەمان تەواو دەبێت. 🌹
-
-    <br>
-
-    بە دڵێکی پڕ لە خۆشی و خۆشەویستی،
-    چاوەڕوانی هاتنتانین بۆ ئەوەی ئەم بۆنە خۆشە
-    لەگەڵ ئێوەدا پێکەوە بەسەر ببەین. ❤️
-
-  </div>
-
-
-  <div class="goldLine"></div>
-
-
-  <!-- INFO -->
-
-  <div class="infoGrid">
+    <div class="cardTitle">
+      💍 ئاکۆ ❤️ وەفا 💍
+    </div>
 
     <div class="info">
-
-      <span class="icon">📅</span>
-
-      <strong>بەروار</strong>
-
-      <br>
-
-      20/09/2026
-
+      <strong>📅 بەروار</strong>
+      <span>20 / 09 / 2026</span>
     </div>
-
 
     <div class="info">
-
-      <span class="icon">🕗</span>
-
-      <strong>کات</strong>
-
-      <br>
-
-      8:00 شێوارە
-
+      <strong>🕗 کات</strong>
+      <span>8:00 شێوارە</span>
     </div>
-
 
     <div class="info">
+      <strong>📍 شوێن</strong>
+      <span>
+        رۆیال ڤێلا<br>
+        شەقامی ١٥٠ مەتری<br>
+        نزیک مزرەعەی شێخ باز<br>
+        رێگای شەقلاوە
+      </span>
+    </div>
 
-      <span class="icon">📍</span>
-
-      <strong>شوێن</strong>
-
+    <div class="verse">
+      ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ
+      أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم
+      مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ
+      لِّقَوْمٍ يَتَفَكَّرُونَ ﴾
       <br>
+      <small>سورەتی الروم – ٢١</small>
+    </div>
 
-      رۆیال ڤێلا
+    <div class="countdown">
 
-      <br>
+      <div class="timeBox">
+        <b id="days">0</b>
+        <small>ڕۆژ</small>
+      </div>
 
-      شەقامی ١٥٠ مەتری
+      <div class="timeBox">
+        <b id="hours">0</b>
+        <small>کاتژمێر</small>
+      </div>
 
-      <br>
+      <div class="timeBox">
+        <b id="minutes">0</b>
+        <small>خولەک</small>
+      </div>
 
-      نزیک مزرەعەی شێخ باز
+      <div class="timeBox">
+        <b id="seconds">0</b>
+        <small>چرکە</small>
+      </div>
 
-      <br>
+    </div>
 
-      رێگای شەقلاوە
+    <!-- SONG -->
+    <div class="song">
+      <iframe
+        id="music"
+        src="https://www.youtube.com/embed/iKTjIC7wdUA?autoplay=0&controls=1&rel=0&playsinline=1"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
 
+    <div class="footer">
+      بە خۆشحاڵییەوە چاوەڕێی ئامادەبوونتانین ❤️
     </div>
 
   </div>
 
-
-  <!-- QURAN -->
-
-  <div class="quran">
-
-    <div class="quranText">
-
-      ﴿وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم
-      مِّنْ أَنفُسِكُمْ أَزْوَاجًا
-      لِّتَسْكُنُوا إِلَيْهَا
-      وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً﴾
-
-    </div>
-
-    <div class="quranRef">
-
-      🌹 سورەتی الروم – ئایەتی ٢١ 🌹
-
-    </div>
-
-  </div>
-
-
-  <!-- COUNTDOWN -->
-
-  <div class="countdownTitle">
-    ⏳ ماوەی ماوە بۆ ئاهەنگەکە
-  </div>
-
-
-  <div class="countdown">
-
-    <div class="timeBox">
-      <span class="timeNumber" id="days">0</span>
-      <span class="timeLabel">ڕۆژ</span>
-    </div>
-
-    <div class="timeBox">
-      <span class="timeNumber" id="hours">0</span>
-      <span class="timeLabel">کاتژمێر</span>
-    </div>
-
-    <div class="timeBox">
-      <span class="timeNumber" id="minutes">0</span>
-      <span class="timeLabel">خولەک</span>
-    </div>
-
-    <div class="timeBox">
-      <span class="timeNumber" id="seconds">0</span>
-      <span class="timeLabel">چرکە</span>
-    </div>
-
-  </div>
-
-
-  <!-- MUSIC -->
-
-  <div class="musicBox">
-
-    <div class="musicTitle">
-      🎵 گۆرانیی مەرەبڕین
-    </div>
-
-    <iframe
-      id="youtubeMusic"
-      src="https://www.youtube.com/embed/iKTjIC7wdUA?enablejsapi=1&autoplay=0&rel=0"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-
-  </div>
-
-
-  <!-- LOCATION -->
-
-  <div class="location">
-
-    <div class="locationIcon">
-      📍
-    </div>
-
-    <div class="locationTitle">
-      شوێنی ئاهەنگ
-    </div>
-
-    <div class="locationText">
-
-      رۆیال ڤێلا
-
-      <br>
-
-      شەقامی ١٥٠ مەتری
-
-      <br>
-
-      نزیک مزرەعەی شێخ باز
-
-      <br>
-
-      رێگای شەقلاوە
-
-    </div>
-
-  </div>
-
-
-  <div class="goldLine"></div>
-
-
-  <div class="kurdishText">
-
-    بەهیوای بەسەرھاتن و ڕۆژێکی تێر لە خۆشی و شادی ❤️
-
-  </div>
-
-</div>
-
-
-<!-- =====================================================
-     BALLOONS
-===================================================== -->
-
-<div class="balloons">
-
-  <div class="balloon b1"></div>
-  <div class="balloon b2"></div>
-  <div class="balloon b3"></div>
-  <div class="balloon b4"></div>
-  <div class="balloon b5"></div>
-
-</div>
-
+</section>
 
 <script>
 
-/* =====================================================
-   START WEDDING
-===================================================== */
-
+/* START */
 function startWedding(){
 
-  const welcome =
-    document.getElementById("welcome");
-
-  const intro =
-    document.getElementById("intro");
-
-  const invitation =
-    document.getElementById("invitation");
-
-  const iframe =
-    document.getElementById("youtubeMusic");
-
-
-  /*
-    🎵 گۆرانی لە هەمان کاتدا دەست پێدەکات
-    کە بەکارهێنەر کرتە لە چوونە ژوورەوە دەکات.
-  */
-
-  iframe.src =
-    "https://www.youtube.com/embed/iKTjIC7wdUA?enablejsapi=1&autoplay=1&rel=0&playsinline=1";
-
-
-  /* Welcome disappears */
+  const welcome = document.getElementById("welcome");
+  const intro = document.getElementById("intro");
 
   welcome.classList.add("hide");
-
-
-  /*
-    Intro appears
-  */
-
-  setTimeout(function(){
-
-    welcome.style.display="none";
-
-    intro.classList.add("active");
-
-  },500);
-
+  intro.classList.add("show");
 
   /*
-    💍 1
-    دوو ئەڵقە بە شێوازی 3D
-    بە جوانی نزیک دەبنەوە
+    YouTube autoplay is requested immediately
+    from the user's button click.
   */
+  const music = document.getElementById("music");
 
-  setTimeout(function(){
-
-    intro.classList.add("join");
-
-  },900);
-
+  music.src =
+    "https://www.youtube.com/embed/iKTjIC7wdUA" +
+    "?autoplay=1" +
+    "&mute=0" +
+    "&controls=0" +
+    "&rel=0" +
+    "&playsinline=1";
 
   /*
-    🤝 2
-    دوای ئەوە دەستەکان دێنە ناوەوە
+    After intro animation, show invitation card.
   */
+  setTimeout(() => {
+    intro.style.opacity = "0";
 
-  setTimeout(function(){
+    setTimeout(() => {
+      intro.style.display = "none";
+      document.getElementById("card").classList.add("show");
+      document.body.style.overflowY = "auto";
+    },1000);
 
-    intro.classList.add("handsIn");
-
-  },3200);
-
-
-  /*
-    ❤️ 3
-    ناوەکان و پیرۆزبایی
-  */
-
-  setTimeout(function(){
-
-    intro.classList.add("textIn");
-
-  },4700);
-
-
-  /*
-    ✨ 4
-    Intro بە شێوازی cinematic دەچێتە ناو کارتەکە
-  */
-
-  setTimeout(function(){
-
-    intro.classList.add("finish");
-
-  },6800);
-
-
-  /*
-    💌 5
-    کارت دەردەکەوێت
-  */
-
-  setTimeout(function(){
-
-    intro.style.display="none";
-
-    invitation.classList.add("show");
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-
-  },8200);
-
+  },6500);
 }
 
 
-/* =====================================================
-   COUNTDOWN
-===================================================== */
+/* COUNTDOWN */
 
-var target =
-  new Date(
-    "September 20, 2026 20:00:00"
-  ).getTime();
+const weddingDate =
+  new Date("September 20, 2026 20:00:00").getTime();
 
+function updateCountdown(){
 
-setInterval(function(){
-
-  var now =
-    new Date().getTime();
-
-  var distance =
-    target - now;
-
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
 
   if(distance <= 0){
 
-    document.getElementById("days")
-      .innerHTML="🎉";
-
-    document.getElementById("hours")
-      .innerHTML="🎉";
-
-    document.getElementById("minutes")
-      .innerHTML="🎉";
-
-    document.getElementById("seconds")
-      .innerHTML="🎉";
+    document.getElementById("days").innerText = "0";
+    document.getElementById("hours").innerText = "0";
+    document.getElementById("minutes").innerText = "0";
+    document.getElementById("seconds").innerText = "0";
 
     return;
   }
 
+  const days =
+    Math.floor(distance / (1000 * 60 * 60 * 24));
 
-  var days =
+  const hours =
     Math.floor(
-      distance /
-      (1000*60*60*24)
+      (distance % (1000 * 60 * 60 * 24))
+      / (1000 * 60 * 60)
     );
 
-
-  var hours =
+  const minutes =
     Math.floor(
-      (distance %
-      (1000*60*60*24))
-      /
-      (1000*60*60)
+      (distance % (1000 * 60 * 60))
+      / (1000 * 60)
     );
 
-
-  var minutes =
+  const seconds =
     Math.floor(
-      (distance %
-      (1000*60*60))
-      /
-      (1000*60)
+      (distance % (1000 * 60))
+      / 1000
     );
 
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+}
 
-  var seconds =
-    Math.floor(
-      (distance %
-      (1000*60))
-      /
-      1000
-    );
-
-
-  document.getElementById("days")
-    .innerHTML=days;
-
-  document.getElementById("hours")
-    .innerHTML=hours;
-
-  document.getElementById("minutes")
-    .innerHTML=minutes;
-
-  document.getElementById("seconds")
-    .innerHTML=seconds;
-
-},1000);
+updateCountdown();
+setInterval(updateCountdown,1000);
 
 </script>
 
