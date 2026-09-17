@@ -7,6 +7,7 @@
 <title>Ako ❤️ Wafa</title>
 
 <style>
+
 *{
   box-sizing:border-box;
 }
@@ -36,6 +37,7 @@ body{
 .overlay{
   position:fixed;
   inset:0;
+
   background:
     radial-gradient(
       circle at center,
@@ -47,12 +49,14 @@ body{
       rgba(20,7,2,.2),
       rgba(0,0,0,.75)
     );
+
   z-index:-1;
 }
 
-/* =========================
+
+/* =====================================================
    WELCOME
-========================= */
+===================================================== */
 
 #welcome{
   min-height:100vh;
@@ -123,9 +127,10 @@ body{
   transform:scale(1.07);
 }
 
-/* =========================
-   INTRO
-========================= */
+
+/* =====================================================
+   INTRO — LUXURY 3D
+===================================================== */
 
 #intro{
   position:fixed;
@@ -141,8 +146,8 @@ body{
   background:
     radial-gradient(
       circle at center,
-      rgba(80,45,12,.3),
-      rgba(2,2,1,.97)
+      rgba(120,70,15,.28),
+      rgba(2,2,1,.98)
     );
 
   z-index:100;
@@ -153,7 +158,9 @@ body{
     opacity 1.5s ease,
     transform 1.5s ease;
 
-  perspective:1200px;
+  perspective:1800px;
+
+  overflow:hidden;
 }
 
 #intro.active{
@@ -162,126 +169,531 @@ body{
 
 #intro.finish{
   opacity:0;
-  transform:scale(1.25);
+
+  transform:
+    scale(1.18)
+    rotateX(5deg);
+
+  pointer-events:none;
 }
 
-/* =========================
-   RINGS
-========================= */
+
+/* =====================================================
+   LUXURY LIGHT
+===================================================== */
+
+.introLight{
+  position:absolute;
+
+  width:500px;
+  height:500px;
+
+  left:50%;
+  top:45%;
+
+  transform:translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,220,140,.22),
+      rgba(255,180,60,.08) 35%,
+      transparent 70%
+    );
+
+  filter:blur(10px);
+
+  animation:
+    luxuryLight 4s ease-in-out infinite;
+}
+
+@keyframes luxuryLight{
+
+  0%,100%{
+    transform:
+      translate(-50%,-50%)
+      scale(.85);
+    opacity:.55;
+  }
+
+  50%{
+    transform:
+      translate(-50%,-50%)
+      scale(1.2);
+    opacity:1;
+  }
+}
+
+
+/* =====================================================
+   RING AREA
+===================================================== */
 
 .ringArea{
+
   position:relative;
 
-  width:330px;
-  height:210px;
+  width:380px;
+  height:260px;
 
-  margin-bottom:10px;
+  margin-bottom:15px;
+
+  transform-style:preserve-3d;
 }
 
-/* Gold rings */
+
+/* =====================================================
+   REALISTIC 3D GOLD RINGS
+===================================================== */
 
 .ring{
 
   position:absolute;
 
-  width:125px;
-  height:125px;
+  width:150px;
+  height:150px;
 
-  top:35px;
+  top:45px;
 
   border-radius:50%;
 
-  border:
-    12px solid #d99b3d;
+  /*
+    multi-layer metallic gold
+  */
 
   background:
     radial-gradient(
+      circle at 35% 25%,
+      #fff9d5 0%,
+      #ffeaa0 7%,
+      #d9a13d 20%,
+      #8c5418 43%,
+      #e6b856 63%,
+      #fff1a9 76%,
+      #9b641e 100%
+    );
+
+  /*
+    ring hole
+  */
+
+  -webkit-mask:
+    radial-gradient(
       circle,
-      transparent 55%,
-      rgba(255,240,170,.08)
+      transparent 0 55%,
+      #000 56% 100%
+    );
+
+  mask:
+    radial-gradient(
+      circle,
+      transparent 0 55%,
+      #000 56% 100%
     );
 
   box-shadow:
 
-    inset 0 0 8px #fff4bd,
+    inset
+    8px
+    8px
+    15px
+    rgba(255,255,255,.75),
 
-    inset 0 0 20px rgba(255,190,60,.6),
+    inset
+    -10px
+    -12px
+    20px
+    rgba(50,25,0,.65),
 
-    0 0 12px #ffe09b,
+    0 0 8px #fff1ae,
 
-    0 0 35px rgba(255,190,70,.8),
+    0 0 25px rgba(255,205,100,.8),
 
-    0 12px 25px rgba(0,0,0,.9);
+    0 18px 35px rgba(0,0,0,.8);
+
+  transform-style:preserve-3d;
 
   transition:
-    2.2s cubic-bezier(.2,.8,.2,1);
+    2.5s cubic-bezier(.16,.82,.18,1);
 }
 
-/* Start positions */
+
+/*
+   extra metallic edge
+*/
+
+.ring::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:-4px;
+
+  border-radius:50%;
+
+  background:
+    conic-gradient(
+      from 20deg,
+      #70400f,
+      #fff0a8,
+      #b87720,
+      #fff6c5,
+      #8a5316,
+      #f4cc70,
+      #70400f
+    );
+
+  z-index:-1;
+
+  filter:blur(2px);
+}
+
+
+/*
+   3D inner reflection
+*/
+
+.ring::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:55px;
+  height:20px;
+
+  left:25px;
+  top:18px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.7);
+
+  filter:blur(9px);
+
+  transform:
+    rotate(-30deg);
+}
+
+
+/* START POSITIONS */
 
 .ringLeft{
+
   left:0;
 
   transform:
-    rotate(-18deg)
-    translateX(-20px);
+    translateX(-30px)
+    rotateY(22deg)
+    rotateZ(-18deg)
+    rotateX(8deg);
 }
 
 .ringRight{
+
   right:0;
 
   transform:
-    rotate(18deg)
-    translateX(20px);
+    translateX(30px)
+    rotateY(-22deg)
+    rotateZ(18deg)
+    rotateX(8deg);
 }
 
-/* Rings join */
+
+/* =====================================================
+   RINGS JOIN
+===================================================== */
 
 #intro.join .ringLeft{
 
-  left:92px;
+  left:115px;
 
   transform:
-    rotate(0deg)
-    scale(.93);
+    translateX(0)
+    rotateY(0)
+    rotateZ(0)
+    rotateX(0)
+    scale(.92);
+
+  filter:
+    drop-shadow(
+      0 0 25px rgba(255,210,110,.9)
+    );
 }
 
 #intro.join .ringRight{
 
-  right:92px;
+  right:115px;
 
   transform:
-    rotate(0deg)
-    scale(.93);
+    translateX(0)
+    rotateY(0)
+    rotateZ(0)
+    rotateX(0)
+    scale(.92);
+
+  filter:
+    drop-shadow(
+      0 0 25px rgba(255,210,110,.9)
+    );
 }
 
-/* =========================
-   HANDS
-========================= */
+
+/* =====================================================
+   GOLD PARTICLES
+===================================================== */
+
+.particle{
+
+  position:absolute;
+
+  width:5px;
+  height:5px;
+
+  border-radius:50%;
+
+  background:#ffe8a0;
+
+  box-shadow:
+    0 0 8px #fff0b0,
+    0 0 18px #dca33e;
+
+  opacity:0;
+}
+
+#intro.join .particle{
+  animation:
+    sparkle 2s ease forwards;
+}
+
+.p1{left:20%;top:30%;}
+.p2{left:28%;top:65%;}
+.p3{left:72%;top:30%;}
+.p4{left:80%;top:65%;}
+.p5{left:50%;top:15%;}
+.p6{left:50%;top:85%;}
+
+@keyframes sparkle{
+
+  0%{
+    opacity:0;
+    transform:scale(.2) translateY(20px);
+  }
+
+  40%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+    transform:scale(1.5) translateY(-50px);
+  }
+}
+
+
+/* =====================================================
+   REALISTIC HANDS
+===================================================== */
 
 .hands{
 
   position:absolute;
 
   left:50%;
-  top:45px;
+  top:50px;
+
+  width:230px;
+  height:145px;
 
   transform:
     translateX(-50%)
-    translateY(90px)
-    scale(.3);
+    translateY(100px)
+    scale(.55);
 
   opacity:0;
 
-  font-size:65px;
-
-  direction:ltr;
-
   transition:
-    1.5s cubic-bezier(.2,.8,.2,1);
+    1.7s cubic-bezier(.16,.82,.18,1);
+
+  z-index:10;
+
+  filter:
+    drop-shadow(
+      0 20px 20px rgba(0,0,0,.65)
+    );
 }
 
-/* Hands enter after rings join */
+
+/*
+  Hand 1
+*/
+
+.hand{
+
+  position:absolute;
+
+  width:145px;
+  height:65px;
+
+  top:48px;
+
+  border-radius:
+    45px
+    40px
+    30px
+    25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f4c39a 0%,
+      #d99a6c 45%,
+      #a96543 100%
+    );
+
+  box-shadow:
+
+    inset
+    5px
+    5px
+    10px
+    rgba(255,255,255,.25),
+
+    inset
+    -8px
+    -7px
+    12px
+    rgba(90,35,15,.35),
+
+    0 12px 18px rgba(0,0,0,.45);
+
+  transform-origin:center;
+}
+
+
+/* fingers */
+
+.hand::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:115px;
+  height:38px;
+
+  left:15px;
+  top:-18px;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f6c9a0,
+      #c98258
+    );
+
+  box-shadow:
+    0 -2px 5px rgba(255,255,255,.2);
+}
+
+
+/* thumb */
+
+.hand::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:60px;
+  height:34px;
+
+  right:-22px;
+  top:18px;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f2bd91,
+      #b9704d
+    );
+
+  transform:rotate(-25deg);
+}
+
+
+/* left hand */
+
+.handLeft{
+
+  left:5px;
+
+  transform:
+    rotate(10deg);
+}
+
+
+/* right hand */
+
+.handRight{
+
+  right:5px;
+
+  transform:
+    scaleX(-1)
+    rotate(10deg);
+}
+
+
+/*
+  realistic cuffs
+*/
+
+.cuff{
+
+  position:absolute;
+
+  width:55px;
+  height:68px;
+
+  top:43px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffdf4,
+      #ddd7c9,
+      #8e887d
+    );
+
+  box-shadow:
+    inset 0 3px 5px rgba(255,255,255,.7),
+    0 5px 12px rgba(0,0,0,.5);
+
+  z-index:-1;
+}
+
+.cuffLeft{
+  left:-8px;
+  transform:rotate(10deg);
+}
+
+.cuffRight{
+  right:-8px;
+  transform:scaleX(-1) rotate(10deg);
+}
+
+
+/* Hands enter */
 
 #intro.handsIn .hands{
 
@@ -293,17 +705,20 @@ body{
     scale(1);
 }
 
-/* small golden shine */
+
+/* =====================================================
+   HAND GLOW
+===================================================== */
 
 .handGlow{
 
   position:absolute;
 
   left:50%;
-  top:105px;
+  top:120px;
 
-  width:100px;
-  height:100px;
+  width:150px;
+  height:150px;
 
   transform:
     translate(-50%,-50%)
@@ -312,14 +727,18 @@ body{
   border-radius:50%;
 
   background:
-    rgba(255,205,100,.35);
+    radial-gradient(
+      circle,
+      rgba(255,230,150,.4),
+      transparent 70%
+    );
 
-  filter:blur(30px);
+  filter:blur(25px);
 
   opacity:0;
 
   transition:
-    1s ease;
+    1.2s ease;
 }
 
 #intro.handsIn .handGlow{
@@ -328,25 +747,26 @@ body{
 
   transform:
     translate(-50%,-50%)
-    scale(1.4);
+    scale(1.5);
 }
 
-/* =========================
+
+/* =====================================================
    HEART
-========================= */
+===================================================== */
 
 .heart{
 
   position:absolute;
 
   left:50%;
-  top:100px;
+  top:115px;
 
   transform:
     translate(-50%,-50%)
     scale(0);
 
-  font-size:48px;
+  font-size:40px;
 
   opacity:0;
 
@@ -358,6 +778,8 @@ body{
 
   transition:
     1s ease;
+
+  z-index:20;
 }
 
 #intro.handsIn .heart{
@@ -369,20 +791,25 @@ body{
     scale(1);
 }
 
-/* =========================
+
+/* =====================================================
    INTRO TEXT
-========================= */
+===================================================== */
 
 .introText{
 
   opacity:0;
 
   transform:
-    translateY(35px)
-    scale(.75);
+    translateY(45px)
+    scale(.7);
 
   transition:
-    1.2s ease;
+    1.4s cubic-bezier(.16,.82,.18,1);
+
+  position:relative;
+
+  z-index:20;
 }
 
 #intro.textIn .introText{
@@ -413,7 +840,8 @@ body{
   text-shadow:
     0 3px 0 #80501a,
     0 7px 18px rgba(0,0,0,.9),
-    0 0 25px rgba(255,210,130,.7);
+    0 0 25px rgba(255,210,130,.7),
+    0 0 55px rgba(255,190,70,.45);
 }
 
 .congrats{
@@ -430,9 +858,10 @@ body{
     0 0 20px rgba(255,190,80,.7);
 }
 
-/* =========================
+
+/* =====================================================
    INVITATION
-========================= */
+===================================================== */
 
 #invitation{
 
@@ -495,9 +924,10 @@ body{
   }
 }
 
-/* =========================
+
+/* =====================================================
    INVITATION NAMES
-========================= */
+===================================================== */
 
 .mainNames{
 
@@ -540,9 +970,10 @@ body{
     0 0 45px rgba(255,190,70,.8);
 }
 
-/* =========================
+
+/* =====================================================
    TEXT
-========================= */
+===================================================== */
 
 .kurdishText{
 
@@ -581,9 +1012,10 @@ body{
     0 0 15px rgba(255,200,100,.7);
 }
 
-/* =========================
+
+/* =====================================================
    INFO
-========================= */
+===================================================== */
 
 .infoGrid{
 
@@ -640,9 +1072,10 @@ body{
   color:#ffd27a;
 }
 
-/* =========================
+
+/* =====================================================
    QURAN
-========================= */
+===================================================== */
 
 .quran{
 
@@ -692,9 +1125,10 @@ body{
   font-size:16px;
 }
 
-/* =========================
+
+/* =====================================================
    COUNTDOWN
-========================= */
+===================================================== */
 
 .countdownTitle{
 
@@ -762,9 +1196,10 @@ body{
   font-size:15px;
 }
 
-/* =========================
+
+/* =====================================================
    MUSIC
-========================= */
+===================================================== */
 
 .musicBox{
 
@@ -797,9 +1232,10 @@ body{
     0 20px 45px rgba(0,0,0,.7);
 }
 
-/* =========================
+
+/* =====================================================
    LOCATION
-========================= */
+===================================================== */
 
 .location{
 
@@ -851,9 +1287,10 @@ body{
   line-height:2;
 }
 
-/* =========================
+
+/* =====================================================
    BALLOONS
-========================= */
+===================================================== */
 
 .balloons{
 
@@ -955,9 +1392,10 @@ body{
   }
 }
 
-/* =========================
+
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:700px){
 
@@ -987,29 +1425,66 @@ body{
   }
 
   .ringArea{
-    transform:scale(.85);
+    transform:scale(.82);
   }
 
   #intro.join .ringLeft{
-    left:93px;
+    left:115px;
   }
 
   #intro.join .ringRight{
-    right:93px;
+    right:115px;
   }
+
+  .hands{
+    transform:
+      translateX(-50%)
+      translateY(100px)
+      scale(.75);
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media(max-width:420px){
+
+  .ringArea{
+    transform:scale(.68);
+  }
+
+  .hands{
+    transform:
+      translateX(-50%)
+      translateY(100px)
+      scale(.62);
+  }
+
+  #intro.join .ringLeft{
+    left:115px;
+  }
+
+  #intro.join .ringRight{
+    right:115px;
+  }
+
 }
 
 </style>
 </head>
+
 
 <body>
 
 <div class="overlay"></div>
 
 
-<!-- =========================
+<!-- =====================================================
      WELCOME
-========================= -->
+===================================================== -->
 
 <div id="welcome">
 
@@ -1028,25 +1503,51 @@ body{
 </div>
 
 
-<!-- =========================
-     RINGS INTRO
-========================= -->
+<!-- =====================================================
+     INTRO
+===================================================== -->
 
 <div id="intro">
 
+  <div class="introLight"></div>
+
+
   <div class="ringArea">
+
+    <!-- GOLD 3D RINGS -->
 
     <div class="ring ringLeft"></div>
 
     <div class="ring ringRight"></div>
 
-    <div class="handGlow"></div>
 
-    <!-- دەستی بووک و زاوا -->
+    <!-- GOLD PARTICLES -->
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+    <div class="particle p6"></div>
+
+
+    <!-- HANDS -->
 
     <div class="hands">
-      🫱🏻‍🫲🏻
+
+      <div class="cuff cuffLeft"></div>
+
+      <div class="hand handLeft"></div>
+
+      <div class="cuff cuffRight"></div>
+
+      <div class="hand handRight"></div>
+
     </div>
+
+
+    <div class="handGlow"></div>
+
 
     <div class="heart">
       ❤️
@@ -1054,6 +1555,8 @@ body{
 
   </div>
 
+
+  <!-- INTRO TEXT -->
 
   <div class="introText">
 
@@ -1070,9 +1573,9 @@ body{
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      INVITATION
-========================= -->
+===================================================== -->
 
 <div id="invitation">
 
@@ -1230,7 +1733,7 @@ body{
 
     <iframe
       id="youtubeMusic"
-      src="https://www.youtube.com/embed/iKTjIC7wdUA?enablejsapi=1&autoplay=0"
+      src="https://www.youtube.com/embed/iKTjIC7wdUA?enablejsapi=1&autoplay=0&rel=0"
       frameborder="0"
       allow="autoplay; encrypted-media"
       allowfullscreen>
@@ -1284,7 +1787,9 @@ body{
 </div>
 
 
-<!-- BALLOONS -->
+<!-- =====================================================
+     BALLOONS
+===================================================== -->
 
 <div class="balloons">
 
@@ -1299,9 +1804,9 @@ body{
 
 <script>
 
-/* =========================
-   START
-========================= */
+/* =====================================================
+   START WEDDING
+===================================================== */
 
 function startWedding(){
 
@@ -1319,18 +1824,22 @@ function startWedding(){
 
 
   /*
-    گۆرانی بەهۆی کرتەی بەکارهێنەرەکە
-    دەست پێدەکات
+    🎵 گۆرانی لە هەمان کاتدا دەست پێدەکات
+    کە بەکارهێنەر کرتە لە چوونە ژوورەوە دەکات.
   */
 
   iframe.src =
-    "https://www.youtube.com/embed/iKTjIC7wdUA?enablejsapi=1&autoplay=1&rel=0";
+    "https://www.youtube.com/embed/iKTjIC7wdUA?enablejsapi=1&autoplay=1&rel=0&playsinline=1";
 
 
-  /* Welcome */
+  /* Welcome disappears */
 
   welcome.classList.add("hide");
 
+
+  /*
+    Intro appears
+  */
 
   setTimeout(function(){
 
@@ -1338,10 +1847,14 @@ function startWedding(){
 
     intro.classList.add("active");
 
-  },700);
+  },500);
 
 
-  /* 1️⃣ ئەڵقەکان دەچنە ناو یەکتری */
+  /*
+    💍 1
+    دوو ئەڵقە بە شێوازی 3D
+    بە جوانی نزیک دەبنەوە
+  */
 
   setTimeout(function(){
 
@@ -1350,34 +1863,46 @@ function startWedding(){
   },900);
 
 
-  /* 2️⃣ دەستی بووک و زاوا دێتە ناو ئەڵقەکان */
+  /*
+    🤝 2
+    دوای ئەوە دەستەکان دێنە ناوەوە
+  */
 
   setTimeout(function(){
 
     intro.classList.add("handsIn");
 
-  },3000);
+  },3200);
 
 
-  /* 3️⃣ ناوەکان و پیرۆزبایی */
+  /*
+    ❤️ 3
+    ناوەکان و پیرۆزبایی
+  */
 
   setTimeout(function(){
 
     intro.classList.add("textIn");
 
-  },4300);
+  },4700);
 
 
-  /* 4️⃣ بچێتە ناو بانگێشتنامە */
+  /*
+    ✨ 4
+    Intro بە شێوازی cinematic دەچێتە ناو کارتەکە
+  */
 
   setTimeout(function(){
 
     intro.classList.add("finish");
 
-  },6500);
+  },6800);
 
 
-  /* 5️⃣ بانگێشتنامە */
+  /*
+    💌 5
+    کارت دەردەکەوێت
+  */
 
   setTimeout(function(){
 
@@ -1390,14 +1915,14 @@ function startWedding(){
       behavior:"smooth"
     });
 
-  },7800);
+  },8200);
 
 }
 
 
-/* =========================
+/* =====================================================
    COUNTDOWN
-========================= */
+===================================================== */
 
 var target =
   new Date(
