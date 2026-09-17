@@ -7,7 +7,6 @@
 <title>Ako ❤️ Wafa</title>
 
 <style>
-
 *{
   box-sizing:border-box;
 }
@@ -27,41 +26,26 @@ body{
 
   background:
     linear-gradient(
-      rgba(18,8,3,.48),
-      rgba(5,3,2,.82)
+      rgba(20,8,3,.45),
+      rgba(5,3,2,.85)
     ),
     url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000&q=90")
     center/cover fixed;
-}
-
-/* =========================
-   BACKGROUND
-========================= */
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-
-  background:
-    radial-gradient(
-      circle at 50% 30%,
-      rgba(255,203,110,.18),
-      transparent 38%
-    );
-
-  z-index:-2;
 }
 
 .overlay{
   position:fixed;
   inset:0;
   background:
+    radial-gradient(
+      circle at center,
+      rgba(255,190,80,.12),
+      transparent 40%
+    ),
     linear-gradient(
       180deg,
-      rgba(20,7,2,.25),
-      rgba(0,0,0,.72)
+      rgba(20,7,2,.2),
+      rgba(0,0,0,.75)
     );
   z-index:-1;
 }
@@ -80,8 +64,6 @@ body::before{
 
   padding:25px;
 
-  perspective:1200px;
-
   transition:
     opacity 1s ease,
     transform 1s ease;
@@ -89,82 +71,64 @@ body::before{
 
 #welcome.hide{
   opacity:0;
-  transform:scale(1.25);
+  transform:scale(1.2);
   pointer-events:none;
 }
 
-/* Welcome title */
-
 .welcomeTitle{
+  font-size:clamp(42px,8vw,75px);
 
-  font-size:clamp(40px,8vw,75px);
-
-  color:#fff;
+  color:white;
 
   margin-bottom:45px;
 
   text-shadow:
-    0 2px 0 #80501a,
-    0 5px 15px rgba(0,0,0,.9),
-    0 0 20px #ffd27a,
-    0 0 50px rgba(255,190,80,.5);
-
-  transform:translateZ(50px);
+    0 3px 0 #80501a,
+    0 7px 18px rgba(0,0,0,.9),
+    0 0 25px #ffd27a,
+    0 0 50px rgba(255,190,80,.6);
 }
 
-/* =========================
-   BUTTON
-========================= */
-
 .enterButton{
+  padding:18px 48px;
 
   border:none;
-
-  padding:18px 45px;
-
   border-radius:60px;
+
+  color:white;
 
   font-size:21px;
   font-weight:bold;
-
-  color:white;
 
   cursor:pointer;
 
   background:
     linear-gradient(
       135deg,
-      #815018,
-      #d69b42,
+      #805018,
+      #d79a3e,
       #fff0ad,
-      #c17d28
+      #bd7925
     );
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,.7),
-    inset 0 2px 3px rgba(255,255,255,.7),
-    0 0 30px rgba(255,196,90,.45);
-
-  text-shadow:
-    0 2px 4px rgba(0,0,0,.7);
+    0 12px 30px rgba(0,0,0,.7),
+    inset 0 2px 4px rgba(255,255,255,.7),
+    0 0 30px rgba(255,190,80,.5);
 
   transition:.3s;
 }
 
 .enterButton:hover{
-  transform:
-    translateY(-5px)
-    scale(1.06);
+  transform:scale(1.07);
 }
 
 /* =========================
-   RINGS INTRO
+   INTRO
 ========================= */
 
-#ringIntro{
-
+#intro{
   position:fixed;
-
   inset:0;
 
   display:none;
@@ -176,115 +140,213 @@ body::before{
 
   background:
     radial-gradient(
-      circle,
-      rgba(80,45,15,.3),
-      rgba(5,3,2,.96)
+      circle at center,
+      rgba(80,45,12,.3),
+      rgba(2,2,1,.97)
     );
 
   z-index:100;
 
+  opacity:1;
+
+  transition:
+    opacity 1.5s ease,
+    transform 1.5s ease;
+
   perspective:1200px;
 }
 
-#ringIntro.active{
+#intro.active{
   display:flex;
 }
 
-/* Rings */
-
-.rings{
-  position:relative;
-
-  width:250px;
-  height:160px;
-
-  margin-bottom:30px;
+#intro.finish{
+  opacity:0;
+  transform:scale(1.25);
 }
 
-/* دو ئەڵقە */
+/* =========================
+   RINGS
+========================= */
+
+.ringArea{
+  position:relative;
+
+  width:330px;
+  height:210px;
+
+  margin-bottom:10px;
+}
+
+/* Gold rings */
 
 .ring{
 
   position:absolute;
 
-  width:105px;
-  height:105px;
+  width:125px;
+  height:125px;
+
+  top:35px;
 
   border-radius:50%;
 
   border:
-    10px solid #d89a3d;
+    12px solid #d99b3d;
+
+  background:
+    radial-gradient(
+      circle,
+      transparent 55%,
+      rgba(255,240,170,.08)
+    );
 
   box-shadow:
 
-    inset 0 0 8px #fff0ae,
+    inset 0 0 8px #fff4bd,
 
-    0 0 10px #ffe09a,
+    inset 0 0 20px rgba(255,190,60,.6),
 
-    0 0 25px rgba(255,193,75,.8),
+    0 0 12px #ffe09b,
 
-    0 12px 20px rgba(0,0,0,.8);
+    0 0 35px rgba(255,190,70,.8),
 
-  top:25px;
+    0 12px 25px rgba(0,0,0,.9);
 
-  transition:2s cubic-bezier(.2,.8,.2,1);
+  transition:
+    2.2s cubic-bezier(.2,.8,.2,1);
 }
 
-.ring::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:-8px;
-
-  border-radius:50%;
-
-  border:
-    2px solid rgba(255,240,180,.8);
-
-}
+/* Start positions */
 
 .ringLeft{
-  left:18px;
-  transform:rotate(-12deg);
+  left:0;
+
+  transform:
+    rotate(-18deg)
+    translateX(-20px);
 }
 
 .ringRight{
-  right:18px;
-  transform:rotate(12deg);
+  right:0;
+
+  transform:
+    rotate(18deg)
+    translateX(20px);
 }
 
-/* یەکبوونی ئەڵقەکان */
+/* Rings join */
 
-#ringIntro.join .ringLeft{
-  left:72px;
+#intro.join .ringLeft{
+
+  left:92px;
+
   transform:
     rotate(0deg)
-    scale(.92);
+    scale(.93);
 }
 
-#ringIntro.join .ringRight{
-  right:72px;
+#intro.join .ringRight{
+
+  right:92px;
+
   transform:
     rotate(0deg)
-    scale(.92);
+    scale(.93);
 }
 
-/* قلب */
+/* =========================
+   HANDS
+========================= */
 
-.ringHeart{
+.hands{
 
   position:absolute;
 
   left:50%;
-  top:55px;
+  top:45px;
+
+  transform:
+    translateX(-50%)
+    translateY(90px)
+    scale(.3);
+
+  opacity:0;
+
+  font-size:65px;
+
+  direction:ltr;
+
+  transition:
+    1.5s cubic-bezier(.2,.8,.2,1);
+}
+
+/* Hands enter after rings join */
+
+#intro.handsIn .hands{
+
+  opacity:1;
+
+  transform:
+    translateX(-50%)
+    translateY(0)
+    scale(1);
+}
+
+/* small golden shine */
+
+.handGlow{
+
+  position:absolute;
+
+  left:50%;
+  top:105px;
+
+  width:100px;
+  height:100px;
 
   transform:
     translate(-50%,-50%)
     scale(0);
 
-  font-size:45px;
+  border-radius:50%;
+
+  background:
+    rgba(255,205,100,.35);
+
+  filter:blur(30px);
+
+  opacity:0;
+
+  transition:
+    1s ease;
+}
+
+#intro.handsIn .handGlow{
+
+  opacity:1;
+
+  transform:
+    translate(-50%,-50%)
+    scale(1.4);
+}
+
+/* =========================
+   HEART
+========================= */
+
+.heart{
+
+  position:absolute;
+
+  left:50%;
+  top:100px;
+
+  transform:
+    translate(-50%,-50%)
+    scale(0);
+
+  font-size:48px;
 
   opacity:0;
 
@@ -295,10 +357,10 @@ body::before{
     0 0 35px rgba(255,190,70,.9);
 
   transition:
-    1s ease 1.4s;
+    1s ease;
 }
 
-#ringIntro.join .ringHeart{
+#intro.handsIn .heart{
 
   opacity:1;
 
@@ -316,14 +378,14 @@ body::before{
   opacity:0;
 
   transform:
-    translateY(30px)
-    scale(.8);
+    translateY(35px)
+    scale(.75);
 
   transition:
-    1s ease 1.7s;
+    1.2s ease;
 }
 
-#ringIntro.join .introText{
+#intro.textIn .introText{
 
   opacity:1;
 
@@ -332,7 +394,9 @@ body::before{
     scale(1);
 }
 
-.englishNames{
+.namesEnglish{
+
+  direction:ltr;
 
   font-family:
     Georgia,
@@ -341,29 +405,29 @@ body::before{
 
   font-style:italic;
 
-  font-size:clamp(35px,8vw,65px);
+  font-size:
+    clamp(38px,8vw,65px);
 
-  color:#fff;
+  color:white;
 
   text-shadow:
-    0 3px 0 #8c571b,
+    0 3px 0 #80501a,
     0 7px 18px rgba(0,0,0,.9),
-    0 0 20px rgba(255,210,120,.7);
-
-  direction:ltr;
+    0 0 25px rgba(255,210,130,.7);
 }
 
 .congrats{
 
   margin-top:18px;
 
-  font-size:clamp(25px,6vw,40px);
+  font-size:
+    clamp(25px,6vw,42px);
 
   color:#ffd27a;
 
   text-shadow:
-    0 2px 5px rgba(0,0,0,.8),
-    0 0 20px rgba(255,190,80,.6);
+    0 3px 8px rgba(0,0,0,.9),
+    0 0 20px rgba(255,190,80,.7);
 }
 
 /* =========================
@@ -374,7 +438,8 @@ body::before{
 
   display:none;
 
-  width:calc(100% - 24px);
+  width:
+    calc(100% - 24px);
 
   max-width:1000px;
 
@@ -385,24 +450,20 @@ body::before{
   border-radius:35px;
 
   background:
-
     linear-gradient(
       145deg,
-      rgba(50,27,10,.65),
-      rgba(8,5,3,.78)
+      rgba(48,25,8,.68),
+      rgba(8,4,2,.82)
     );
 
   border:
     1px solid rgba(255,210,130,.4);
 
-  backdrop-filter:blur(15px);
+  backdrop-filter:blur(16px);
 
   box-shadow:
-
     0 40px 100px rgba(0,0,0,.9),
-
     inset 0 1px rgba(255,255,255,.2),
-
     0 0 50px rgba(255,190,70,.1);
 
   animation:
@@ -419,8 +480,8 @@ body::before{
     opacity:0;
 
     transform:
-      translateY(100px)
-      scale(.75)
+      translateY(120px)
+      scale(.7)
       rotateX(20deg);
   }
 
@@ -435,45 +496,39 @@ body::before{
 }
 
 /* =========================
-   NAMES
+   INVITATION NAMES
 ========================= */
 
-.names{
+.mainNames{
+
+  direction:ltr;
 
   font-family:
     Georgia,
     "Times New Roman",
     serif;
 
-  direction:ltr;
-
-  font-size:clamp(48px,9vw,90px);
-
   font-style:italic;
+
+  font-size:
+    clamp(48px,9vw,90px);
 
   color:white;
 
   margin:0;
 
   text-shadow:
-
-    0 2px 0 #81501a,
-
-    0 5px 0 #5c370e,
-
-    0 9px 20px rgba(0,0,0,.9),
-
+    0 3px 0 #81501a,
+    0 6px 0 #5c370e,
+    0 10px 22px rgba(0,0,0,.9),
     0 0 25px rgba(255,205,120,.7);
 }
 
-.names span{
+.mainNames span{
   color:#e9b45c;
 }
 
-/* Heart */
-
 .bigHeart{
-
   font-size:48px;
 
   margin:10px;
@@ -482,24 +537,22 @@ body::before{
 
   text-shadow:
     0 0 20px #ffd27a,
-    0 0 45px rgba(255,190,70,.7);
+    0 0 45px rgba(255,190,70,.8);
 }
 
 /* =========================
-   KURDISH TEXT
+   TEXT
 ========================= */
 
-.kurdishWelcome{
+.kurdishText{
 
-  max-width:750px;
+  max-width:760px;
 
   margin:20px auto 35px;
 
   font-size:21px;
 
   line-height:2.2;
-
-  color:#fff;
 
   text-shadow:
     0 2px 6px rgba(0,0,0,.9);
@@ -508,7 +561,6 @@ body::before{
 .goldLine{
 
   width:70%;
-
   max-width:500px;
 
   height:1px;
@@ -555,7 +607,7 @@ body::before{
     linear-gradient(
       145deg,
       rgba(255,255,255,.08),
-      rgba(0,0,0,.3)
+      rgba(0,0,0,.32)
     );
 
   border:
@@ -568,18 +620,6 @@ body::before{
   font-size:18px;
 
   line-height:2;
-
-  transition:.3s;
-}
-
-.info:hover{
-
-  transform:
-    translateY(-7px);
-
-  box-shadow:
-    0 20px 40px rgba(0,0,0,.7),
-    0 0 20px rgba(255,190,80,.15);
 }
 
 .icon{
@@ -641,9 +681,6 @@ body::before{
   line-height:2.4;
 
   color:#ffe8b0;
-
-  text-shadow:
-    0 2px 5px rgba(0,0,0,.8);
 }
 
 .quranRef{
@@ -838,7 +875,6 @@ body::before{
   bottom:-150px;
 
   width:65px;
-
   height:85px;
 
   border-radius:50%;
@@ -860,14 +896,12 @@ body::before{
   position:absolute;
 
   width:2px;
-
   height:100px;
 
   background:
     rgba(255,255,255,.5);
 
   left:50%;
-
   top:84px;
 }
 
@@ -940,7 +974,7 @@ body::before{
       repeat(2,1fr);
   }
 
-  .kurdishWelcome{
+  .kurdishText{
     font-size:18px;
   }
 
@@ -948,28 +982,25 @@ body::before{
     font-size:20px;
   }
 
-  .englishNames{
+  .namesEnglish{
     font-size:40px;
   }
 
-  .ring{
-    width:90px;
-    height:90px;
-    border-width:8px;
+  .ringArea{
+    transform:scale(.85);
   }
 
-  #ringIntro.join .ringLeft{
-    left:80px;
+  #intro.join .ringLeft{
+    left:93px;
   }
 
-  #ringIntro.join .ringRight{
-    right:80px;
+  #intro.join .ringRight{
+    right:93px;
   }
 }
 
 </style>
 </head>
-
 
 <body>
 
@@ -977,7 +1008,7 @@ body::before{
 
 
 <!-- =========================
-     WELCOME PAGE
+     WELCOME
 ========================= -->
 
 <div id="welcome">
@@ -1001,15 +1032,23 @@ body::before{
      RINGS INTRO
 ========================= -->
 
-<div id="ringIntro">
+<div id="intro">
 
-  <div class="rings">
+  <div class="ringArea">
 
     <div class="ring ringLeft"></div>
 
     <div class="ring ringRight"></div>
 
-    <div class="ringHeart">
+    <div class="handGlow"></div>
+
+    <!-- دەستی بووک و زاوا -->
+
+    <div class="hands">
+      🫱🏻‍🫲🏻
+    </div>
+
+    <div class="heart">
       ❤️
     </div>
 
@@ -1018,7 +1057,7 @@ body::before{
 
   <div class="introText">
 
-    <div class="englishNames">
+    <div class="namesEnglish">
       Ako ❤️ Wafa
     </div>
 
@@ -1037,18 +1076,16 @@ body::before{
 
 <div id="invitation">
 
-
-  <h1 class="names">
+  <h1 class="mainNames">
     Ako <span>❤️</span> Wafa
   </h1>
-
 
   <div class="bigHeart">
     💍
   </div>
 
 
-  <div class="kurdishWelcome">
+  <div class="kurdishText">
 
     ❤️ بەخێربێن بۆ ئاهەنگی مەرەبڕینمان ❤️
 
@@ -1076,16 +1113,11 @@ body::before{
 
   <div class="infoGrid">
 
-
     <div class="info">
 
-      <span class="icon">
-        📅
-      </span>
+      <span class="icon">📅</span>
 
-      <strong>
-        بەروار
-      </strong>
+      <strong>بەروار</strong>
 
       <br>
 
@@ -1096,13 +1128,9 @@ body::before{
 
     <div class="info">
 
-      <span class="icon">
-        🕗
-      </span>
+      <span class="icon">🕗</span>
 
-      <strong>
-        کات
-      </strong>
+      <strong>کات</strong>
 
       <br>
 
@@ -1113,13 +1141,9 @@ body::before{
 
     <div class="info">
 
-      <span class="icon">
-        📍
-      </span>
+      <span class="icon">📍</span>
 
-      <strong>
-        شوێن
-      </strong>
+      <strong>شوێن</strong>
 
       <br>
 
@@ -1138,7 +1162,6 @@ body::before{
       رێگای شەقلاوە
 
     </div>
-
 
   </div>
 
@@ -1168,71 +1191,30 @@ body::before{
   <!-- COUNTDOWN -->
 
   <div class="countdownTitle">
-
     ⏳ ماوەی ماوە بۆ ئاهەنگەکە
-
   </div>
 
 
   <div class="countdown">
 
     <div class="timeBox">
-
-      <span
-        class="timeNumber"
-        id="days">
-        0
-      </span>
-
-      <span class="timeLabel">
-        ڕۆژ
-      </span>
-
+      <span class="timeNumber" id="days">0</span>
+      <span class="timeLabel">ڕۆژ</span>
     </div>
 
-
     <div class="timeBox">
-
-      <span
-        class="timeNumber"
-        id="hours">
-        0
-      </span>
-
-      <span class="timeLabel">
-        کاتژمێر
-      </span>
-
+      <span class="timeNumber" id="hours">0</span>
+      <span class="timeLabel">کاتژمێر</span>
     </div>
 
-
     <div class="timeBox">
-
-      <span
-        class="timeNumber"
-        id="minutes">
-        0
-      </span>
-
-      <span class="timeLabel">
-        خولەک
-      </span>
-
+      <span class="timeNumber" id="minutes">0</span>
+      <span class="timeLabel">خولەک</span>
     </div>
 
-
     <div class="timeBox">
-
-      <span
-        class="timeNumber"
-        id="seconds">
-        0
-      </span>
-
-      <span class="timeLabel">
-        چرکە
-      </span>
-
+      <span class="timeNumber" id="seconds">0</span>
+      <span class="timeLabel">چرکە</span>
     </div>
 
   </div>
@@ -1293,7 +1275,7 @@ body::before{
   <div class="goldLine"></div>
 
 
-  <div class="kurdishWelcome">
+  <div class="kurdishText">
 
     بەهیوای بەسەرھاتن و ڕۆژێکی تێر لە خۆشی و شادی ❤️
 
@@ -1302,9 +1284,7 @@ body::before{
 </div>
 
 
-<!-- =========================
-     BALLOONS
-========================= -->
+<!-- BALLOONS -->
 
 <div class="balloons">
 
@@ -1320,7 +1300,7 @@ body::before{
 <script>
 
 /* =========================
-   START WEDDING
+   START
 ========================= */
 
 function startWedding(){
@@ -1329,7 +1309,7 @@ function startWedding(){
     document.getElementById("welcome");
 
   const intro =
-    document.getElementById("ringIntro");
+    document.getElementById("intro");
 
   const invitation =
     document.getElementById("invitation");
@@ -1338,7 +1318,16 @@ function startWedding(){
     document.getElementById("youtubeMusic");
 
 
-  /* Welcome disappears */
+  /*
+    گۆرانی بەهۆی کرتەی بەکارهێنەرەکە
+    دەست پێدەکات
+  */
+
+  iframe.src =
+    "https://www.youtube.com/embed/iKTjIC7wdUA?enablejsapi=1&autoplay=1&rel=0";
+
+
+  /* Welcome */
 
   welcome.classList.add("hide");
 
@@ -1349,28 +1338,46 @@ function startWedding(){
 
     intro.classList.add("active");
 
-  },1000);
+  },700);
 
 
-  /* Rings move together */
+  /* 1️⃣ ئەڵقەکان دەچنە ناو یەکتری */
 
   setTimeout(function(){
 
     intro.classList.add("join");
 
-  },500);
+  },900);
 
 
-  /* Open invitation */
+  /* 2️⃣ دەستی بووک و زاوا دێتە ناو ئەڵقەکان */
 
   setTimeout(function(){
 
-    intro.style.opacity="0";
+    intro.classList.add("handsIn");
 
-    intro.style.transform="scale(1.3)";
+  },3000);
 
-  },3900);
 
+  /* 3️⃣ ناوەکان و پیرۆزبایی */
+
+  setTimeout(function(){
+
+    intro.classList.add("textIn");
+
+  },4300);
+
+
+  /* 4️⃣ بچێتە ناو بانگێشتنامە */
+
+  setTimeout(function(){
+
+    intro.classList.add("finish");
+
+  },6500);
+
+
+  /* 5️⃣ بانگێشتنامە */
 
   setTimeout(function(){
 
@@ -1383,19 +1390,7 @@ function startWedding(){
       behavior:"smooth"
     });
 
-
-    /* Play YouTube */
-
-    iframe.contentWindow.postMessage(
-      JSON.stringify({
-        event:"command",
-        func:"playVideo",
-        args:[]
-      }),
-      "*"
-    );
-
-  },4800);
+  },7800);
 
 }
 
@@ -1482,7 +1477,6 @@ setInterval(function(){
 
   document.getElementById("seconds")
     .innerHTML=seconds;
-
 
 },1000);
 
