@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>وەفا & ئاکۆ 💍</title>
+<title>💍 وەفا & ئاکۆ 💍</title>
 
 <style>
 
@@ -16,9 +16,12 @@ font-family:sans-serif;
 }
 
 body{
-background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop') center center/cover no-repeat;
-height:100vh;
-overflow:hidden;
+background:url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop') center center/cover no-repeat;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
 }
 
 .overlay{
@@ -27,19 +30,12 @@ inset:0;
 background:rgba(0,0,0,.55);
 }
 
-.enterScreen{
-position:fixed;
-inset:0;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:999;
-}
-
-.enterCard{
-width:90%;
-max-width:420px;
-background:rgba(255,255,255,.15);
+.card{
+position:relative;
+z-index:2;
+width:100%;
+max-width:600px;
+background:rgba(255,255,255,.12);
 backdrop-filter:blur(15px);
 padding:30px;
 border-radius:30px;
@@ -48,83 +44,60 @@ color:white;
 border:1px solid rgba(255,255,255,.2);
 }
 
-.enterCard h1{
-font-size:40px;
-margin-bottom:15px;
-}
-
-.enterBtn{
-margin-top:20px;
-padding:15px 35px;
-border:none;
-border-radius:50px;
-background:#ffd54f;
-font-size:20px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.main{
-display:none;
-height:100vh;
-justify-content:center;
-align-items:center;
-padding:20px;
-}
-
-.card{
-width:100%;
-max-width:500px;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(12px);
-padding:25px;
-border-radius:30px;
-text-align:center;
-color:white;
-border:1px solid rgba(255,255,255,.2);
-}
-
-h2{
-font-size:42px;
-margin-bottom:15px;
+h1{
+font-size:48px;
+margin-bottom:20px;
 }
 
 .info{
 font-size:22px;
-margin:12px 0;
+margin:15px 0;
+line-height:1.8;
 }
 
 .welcome{
 font-size:28px;
 font-weight:bold;
 margin:25px 0;
-line-height:1.5;
+line-height:1.6;
 }
 
 #countdown{
 font-size:30px;
 font-weight:bold;
 color:#ffd54f;
-margin-top:25px;
+margin:25px 0;
+}
+
+.playBtn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:20px;
+background:#ffd54f;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-top:15px;
 }
 
 .mapBtn{
 display:block;
-margin-top:20px;
-padding:15px;
+margin-top:15px;
+padding:16px;
 background:white;
 color:black;
 text-decoration:none;
-border-radius:15px;
+border-radius:20px;
 font-size:18px;
 font-weight:bold;
+line-height:1.7;
 }
 
 .footer{
-margin-top:20px;
-font-size:18px;
+margin-top:25px;
+font-size:20px;
 }
-
 </style>
 </head>
 
@@ -132,68 +105,52 @@ font-size:18px;
 
 <div class="overlay"></div>
 
-<div class="enterScreen" id="enterScreen">
-
-<div class="enterCard">
-
-<h1>💍 وەفا & ئاکۆ 💍</h1>
-
-<p>بەخێربێن بۆ بانگهێشتنامەی هاوسەرگیریمان ❤️</p>
-
-<button class="enterBtn" onclick="enterWedding()">
-❤️ چوونە ژوورەوە
-</button>
-
-</div>
-
-</div>
-
-<div class="main" id="main">
-
 <div class="card">
 
-<h2>💍 وەفا & ئاکۆ 💍</h2>
-
-<div class="info">📅 20/09/2026</div>
-
-<div class="info">🕗 8:00 PM</div>
-
-<div class="info">📍 شەقڵاوە</div>
+<h1>💍 وەفا & ئاکۆ 💍</h1>
 
 <div class="welcome">
 ❤️ بەخێربێن بۆ ئاهەنگی هاوسەرگیریمان ❤️
 </div>
 
+<div class="info">
+📅 20 / 09 / 2026
+</div>
+
+<div class="info">
+🕗 8:00 PM
+</div>
+
+<div class="info">
+📍 شوێن / رۆیال ڤێلا / شەقامی ١٥٠ مەتری / نزیک مزرەعەی شێخ باز / ڕێگای شەقڵاوە
+</div>
+
 <div id="countdown"></div>
 
+<button class="playBtn" onclick="playMusic()">
+🎵 گۆرانی دەستپێبکە
+</button>
+
 <a class="mapBtn"
-href="https://maps.google.com"
+href="https://maps.google.com/?q=36.248158,44.114311"
 target="_blank">
 📍 شوێنی ئاهەنگ
 </a>
 
 <div class="footer">
-لەگەڵ خۆشەویستی ❤️
+❤️ لەگەڵ خۆشەویستی
 </div>
 
 <audio id="music" loop>
-<source src="Nazdar Ciziri - BÛKÊ (Official Music Video) - Nazdar Cizîrî.mp3" type="audio/mpeg">
+<source src="buke.mp3" type="audio/mpeg">
 </audio>
-
-</div>
 
 </div>
 
 <script>
 
-function enterWedding(){
-
-document.getElementById("enterScreen").style.display="none";
-
-document.getElementById("main").style.display="flex";
-
+function playMusic(){
 document.getElementById("music").play();
-
 }
 
 var countDownDate =
@@ -215,13 +172,9 @@ var minutes =
 Math.floor((distance%(1000*60*60))/(1000*60));
 
 document.getElementById("countdown").innerHTML =
-"⏳ " +
-days +
-" ڕۆژ " +
-hours +
-" کاتژمێر " +
-minutes +
-" خولەک";
+"⏳ " + days + " ڕۆژ  •  " +
+hours + " کاتژمێر  •  " +
+minutes + " خولەک";
 
 },1000);
 
