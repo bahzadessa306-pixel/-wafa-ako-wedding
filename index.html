@@ -1,603 +1,284 @@
 <!DOCTYPE html>
-<html lang="ku" dir="rtl">
+<html lang="ku">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>وەفا & ئاکۆ 💍</title>
+<title>وەفا & ئاکۆ</title>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:sans-serif;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    min-height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:
-    radial-gradient(circle at top,#6d4a70,#25152f 45%,#090611 100%);
-    perspective:1200px;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80")
+  center/cover fixed;
+  color: white;
+  text-align: center;
 }
 
-/* ستێرەکان */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background-image:
-    radial-gradient(circle,#fff 1px,transparent 1px),
-    radial-gradient(circle,#ffd7f4 1px,transparent 1px);
-    background-size:70px 70px,110px 110px;
-    opacity:.35;
-    animation:stars 12s linear infinite;
-    pointer-events:none;
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 5, 30, 0.65);
+  z-index: -1;
 }
 
-@keyframes stars{
-    from{transform:translateY(0);}
-    to{transform:translateY(-100px);}
+.welcome {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-/* ڕووناکی */
-
-.glow{
-    position:fixed;
-    width:450px;
-    height:450px;
-    border-radius:50%;
-    background:rgba(255,105,180,.18);
-    filter:blur(80px);
-    animation:glowMove 6s ease-in-out infinite alternate;
+.welcome h1 {
+  font-size: 42px;
+  text-shadow: 0 0 20px #ffb6d9;
 }
 
-@keyframes glowMove{
-    from{transform:translate(-120px,-80px);}
-    to{transform:translate(120px,80px);}
+button {
+  padding: 18px 35px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #ffd700, #ff8acb);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(255, 200, 100, 0.8);
 }
 
-/* باڵۆنەکان */
-
-.balloons{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    overflow:hidden;
+.card {
+  display: none;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 35px 25px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: show 1.5s ease;
 }
 
-.balloon{
-    position:absolute;
-    bottom:-150px;
-    width:55px;
-    height:70px;
-    border-radius:50% 50% 45% 45%;
-    box-shadow:
-        inset -10px -10px 15px rgba(0,0,0,.25),
-        inset 10px 10px 15px rgba(255,255,255,.35),
-        0 10px 30px rgba(0,0,0,.3);
-
-    animation:fly linear infinite;
+@keyframes show {
+  from {
+    transform: scale(0.5) rotateX(40deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotateX(0);
+    opacity: 1;
+  }
 }
 
-.balloon::before{
-    content:"";
-    position:absolute;
-    width:8px;
-    height:8px;
-    bottom:-4px;
-    left:50%;
-    transform:translateX(-50%) rotate(45deg);
-    background:inherit;
+h2 {
+  font-size: 40px;
+  color: #ffd700;
 }
 
-.balloon::after{
-    content:"";
-    position:absolute;
-    width:1px;
-    height:100px;
-    background:rgba(255,255,255,.65);
-    top:68px;
-    left:50%;
+.info {
+  margin: 18px 0;
+  font-size: 19px;
+  line-height: 1.8;
 }
 
-.b1{
-    left:5%;
-    background:linear-gradient(135deg,#ff5ca8,#c51d67);
-    animation-duration:12s;
+.countdown {
+  font-size: 24px;
+  margin: 25px 0;
+  color: #ffd700;
 }
 
-.b2{
-    left:18%;
-    width:45px;
-    height:60px;
-    background:linear-gradient(135deg,#ffd95a,#e89d00);
-    animation-duration:15s;
-    animation-delay:3s;
+.musicBox {
+  margin-top: 25px;
 }
 
-.b3{
-    left:34%;
-    background:linear-gradient(135deg,#67dfff,#1678db);
-    animation-duration:13s;
-    animation-delay:1s;
+/* ئەگەر نەتەوێت ڤیدیۆکە ببینرێت */
+.musicBox iframe {
+  width: 100%;
+  height: 80px;
+  border-radius: 15px;
 }
 
-.b4{
-    left:52%;
-    width:48px;
-    height:63px;
-    background:linear-gradient(135deg,#ff7d91,#e51f45);
-    animation-duration:16s;
-    animation-delay:4s;
+.balloons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
 }
 
-.b5{
-    left:70%;
-    background:linear-gradient(135deg,#b879ff,#6421bd);
-    animation-duration:14s;
-    animation-delay:2s;
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  width: 70px;
+  height: 90px;
+  border-radius: 50%;
+  animation: fly 12s linear infinite;
+  box-shadow: inset -10px -10px 20px rgba(0,0,0,.2),
+              0 0 20px rgba(255,255,255,.3);
 }
 
-.b6{
-    left:87%;
-    width:46px;
-    height:62px;
-    background:linear-gradient(135deg,#fff16a,#ffbd00);
-    animation-duration:17s;
-    animation-delay:5s;
+.balloon::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: rgba(255,255,255,.7);
+  left: 50%;
+  top: 88px;
 }
 
-@keyframes fly{
-    0%{
-        transform:
-        translateY(0)
-        translateX(0)
-        rotate(-5deg);
-        opacity:0;
-    }
+.b1 { left: 10%; background: #ff5c8a; animation-delay: 0s; }
+.b2 { left: 25%; background: #ffd700; animation-delay: 3s; }
+.b3 { left: 45%; background: #7dd3fc; animation-delay: 6s; }
+.b4 { left: 65%; background: #c084fc; animation-delay: 2s; }
+.b5 { left: 80%; background: #fb7185; animation-delay: 5s; }
 
-    10%{
-        opacity:1;
-    }
+@keyframes fly {
+  0% {
+    transform: translateY(0) rotate(-8deg);
+  }
 
-    50%{
-        transform:
-        translateY(-55vh)
-        translateX(35px)
-        rotate(8deg);
-    }
+  50% {
+    transform: translateY(-55vh) rotate(8deg);
+  }
 
-    100%{
-        transform:
-        translateY(-125vh)
-        translateX(-45px)
-        rotate(-8deg);
-        opacity:0;
-    }
+  100% {
+    transform: translateY(-120vh) rotate(-8deg);
+  }
 }
-
-/* شاشەی سەرەتا */
-
-#welcome{
-    position:relative;
-    z-index:5;
-    text-align:center;
-    animation:welcomeIn 1.5s ease;
-}
-
-@keyframes welcomeIn{
-    from{
-        opacity:0;
-        transform:translateY(40px) scale(.8);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-.welcomeTitle{
-    color:white;
-    font-size:35px;
-    margin-bottom:30px;
-    text-shadow:
-        0 0 10px #ff9bd5,
-        0 0 30px #ff4da6;
-}
-
-.enterBtn{
-    position:relative;
-    border:none;
-    padding:18px 42px;
-    font-size:24px;
-    color:white;
-    border-radius:50px;
-    cursor:pointer;
-
-    background:
-    linear-gradient(135deg,#ffd86b,#c99519);
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.4),
-        inset 0 2px 5px rgba(255,255,255,.7),
-        0 0 25px rgba(255,215,0,.5);
-
-    transition:.3s;
-}
-
-.enterBtn:hover{
-    transform:
-    translateY(-5px)
-    scale(1.05);
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.5),
-        0 0 40px rgba(255,215,0,.8);
-}
-
-/* کارتی 3D */
-
-.card{
-    display:none;
-    position:relative;
-    z-index:4;
-
-    width:100%;
-    max-width:520px;
-
-    padding:32px 25px;
-
-    color:white;
-    text-align:center;
-
-    border-radius:35px;
-
-    background:
-    linear-gradient(
-        145deg,
-        rgba(255,255,255,.22),
-        rgba(255,255,255,.07)
-    );
-
-    border:1px solid rgba(255,255,255,.35);
-
-    backdrop-filter:blur(18px);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.55),
-        inset 0 1px 1px rgba(255,255,255,.5),
-        0 0 50px rgba(255,100,190,.2);
-
-    transform-style:preserve-3d;
-
-    animation:
-        cardIn 1s cubic-bezier(.17,.67,.25,1.25);
-}
-
-@keyframes cardIn{
-    from{
-        opacity:0;
-        transform:
-        rotateX(35deg)
-        rotateY(-20deg)
-        translateY(100px)
-        scale(.7);
-    }
-
-    to{
-        opacity:1;
-        transform:
-        rotateX(0)
-        rotateY(0)
-        translateY(0)
-        scale(1);
-    }
-}
-
-.card::before{
-    content:"";
-    position:absolute;
-    inset:-2px;
-    border-radius:35px;
-
-    background:
-    linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,.45),
-        transparent
-    );
-
-    opacity:.5;
-    pointer-events:none;
-}
-
-h1{
-    font-size:43px;
-    margin-bottom:22px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #fff,
-        #ffd86b,
-        #fff
-    );
-
-    -webkit-background-clip:text;
-    color:transparent;
-
-    text-shadow:
-        0 0 20px rgba(255,215,100,.4);
-}
-
-.info{
-    margin:13px 0;
-    padding:12px;
-
-    font-size:23px;
-
-    border-radius:18px;
-
-    background:rgba(255,255,255,.08);
-
-    box-shadow:
-        inset 0 1px rgba(255,255,255,.2),
-        0 5px 15px rgba(0,0,0,.15);
-}
-
-h2{
-    margin-top:24px;
-    font-size:21px;
-    line-height:1.8;
-
-    text-shadow:
-        0 0 15px rgba(255,80,150,.8);
-}
-
-/* ژمێر */
-
-#countdown{
-    margin-top:22px;
-    padding:15px;
-
-    font-size:24px;
-    font-weight:bold;
-
-    color:#ffe27a;
-
-    border-radius:20px;
-
-    background:rgba(0,0,0,.2);
-
-    box-shadow:
-        inset 0 0 20px rgba(255,215,0,.08),
-        0 0 20px rgba(255,215,0,.1);
-}
-
-/* گۆرانی */
-
-.musicBox{
-    margin-top:20px;
-    padding:10px;
-
-    border-radius:20px;
-
-    background:rgba(255,255,255,.08);
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.25);
-}
-
-iframe{
-    display:block;
-    width:100%;
-    height:90px;
-    border:0;
-    border-radius:15px;
-}
-
-.heart{
-    position:absolute;
-    font-size:25px;
-    animation:heartFloat 4s ease-in-out infinite;
-}
-
-.h1{
-    top:15px;
-    left:20px;
-}
-
-.h2{
-    top:35px;
-    right:25px;
-    animation-delay:1s;
-}
-
-@keyframes heartFloat{
-    0%,100%{
-        transform:translateY(0) rotate(-10deg);
-        opacity:.6;
-    }
-
-    50%{
-        transform:translateY(-15px) rotate(10deg);
-        opacity:1;
-    }
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="glow"></div>
-
-<!-- باڵۆنە جوڵاوەکان -->
+<div class="overlay"></div>
 
 <div class="balloons">
-
-    <div class="balloon b1"></div>
-    <div class="balloon b2"></div>
-    <div class="balloon b3"></div>
-    <div class="balloon b4"></div>
-    <div class="balloon b5"></div>
-    <div class="balloon b6"></div>
-
+  <div class="balloon b1"></div>
+  <div class="balloon b2"></div>
+  <div class="balloon b3"></div>
+  <div class="balloon b4"></div>
+  <div class="balloon b5"></div>
 </div>
 
-<!-- پەڕەی سەرەتا -->
+<div class="welcome" id="welcome">
 
-<div id="welcome">
+  <h1>💍 وەفا & ئاکۆ 💍</h1>
 
-    <div class="welcomeTitle">
-        💍 وەفا & ئاکۆ 💍
-    </div>
-
-    <button class="enterBtn" onclick="enterSite()">
-        💍 چوونە ژوورەوە
-    </button>
+  <button onclick="enterSite()">
+    💍 چوونە ژوورەوە
+  </button>
 
 </div>
-
-
-<!-- کارت -->
 
 <div class="card" id="card">
 
-    <div class="heart h1">❤️</div>
-    <div class="heart h2">💖</div>
+  <h2>💍 وەفا & ئاکۆ 💍</h2>
 
-    <h1>
-        💍 وەفا & ئاکۆ 💍
-    </h1>
+  <div class="info">
+    📅 20/09/2026
+  </div>
 
-    <div class="info">
-        📅 20/09/2026
-    </div>
+  <div class="info">
+    🕗 8:00 PM
+  </div>
 
-    <div class="info">
-        🕗 8:00 PM
-    </div>
+  <div class="info">
+    📍 <strong>شوێن</strong><br>
+    رۆیال ڤێلا<br>
+    شەقامی ١٥٠ مەتری نزیک مزرەعەی شێخ باز<br>
+    رێگای شەقلاوە
+  </div>
 
-    <div class="info">
-        📍 شەقڵاوە
-    </div>
+  <div class="info">
+    ❤️ بەخێربێن بۆ ئاهەنگی هاوسەرگیریمان ❤️
+  </div>
 
-    <h2>
-        ❤️ بەخێربێن بۆ ئاهەنگی هاوسەرگیریمان ❤️
-    </h2>
+  <div class="countdown" id="countdown"></div>
 
-    <div id="countdown"></div>
+  <div class="musicBox">
 
-    <div class="musicBox">
+    <iframe
+      id="youtubeMusic"
+      src="https://www.youtube.com/embed/ifUe7047Ro0?enablejsapi=1&autoplay=0"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
 
-        <iframe
-        src="https://www.youtube.com/embed/ifUe7047Ro0"
-        title="Wedding Music"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-        </iframe>
-
-    </div>
+  </div>
 
 </div>
 
-
 <script>
 
-function enterSite(){
+function enterSite() {
 
-    document.getElementById("welcome").style.display="none";
+  // شاردنەوەی پەڕەی بەخێرهاتن
+  document.getElementById("welcome").style.display = "none";
 
-    document.getElementById("card").style.display="block";
+  // پیشاندانی کارتەکە
+  document.getElementById("card").style.display = "block";
 
+  // دەستپێکردنی گۆرانی
+  var iframe = document.getElementById("youtubeMusic");
+
+  iframe.contentWindow.postMessage(
+    JSON.stringify({
+      event: "command",
+      func: "playVideo",
+      args: []
+    }),
+    "*"
+  );
 }
 
 
-/* Countdown */
+// Countdown
+var target = new Date("September 20, 2026 20:00:00").getTime();
 
-var countDownDate =
-new Date("Sep 20, 2026 20:00:00").getTime();
+setInterval(function() {
 
+  var now = new Date().getTime();
 
-setInterval(function(){
+  var distance = target - now;
 
-    var now =
-    new Date().getTime();
-
-    var distance =
-    countDownDate - now;
-
-
-    if(distance <= 0){
-
-        document.getElementById("countdown").innerHTML =
-        "🎉 ئاهەنگەکە دەستی پێکرد! 🎉";
-
-        return;
-
-    }
-
-
-    var days =
-    Math.floor(
-        distance /
-        (1000*60*60*24)
-    );
-
-
-    var hours =
-    Math.floor(
-        (distance %
-        (1000*60*60*24))
-        /
-        (1000*60*60)
-    );
-
-
-    var minutes =
-    Math.floor(
-        (distance %
-        (1000*60*60))
-        /
-        (1000*60)
-    );
-
-
-    var seconds =
-    Math.floor(
-        (distance %
-        (1000*60))
-        /
-        1000
-    );
-
-
+  if (distance <= 0) {
     document.getElementById("countdown").innerHTML =
+      "🎉 کاتی ئاهەنگەکە گەیشت! 🎉";
+    return;
+  }
 
+  var days = Math.floor(
+    distance / (1000 * 60 * 60 * 24)
+  );
+
+  var hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24))
+    / (1000 * 60 * 60)
+  );
+
+  var minutes = Math.floor(
+    (distance % (1000 * 60 * 60))
+    / (1000 * 60)
+  );
+
+  var seconds = Math.floor(
+    (distance % (1000 * 60))
+    / 1000
+  );
+
+  document.getElementById("countdown").innerHTML =
     "⏳ " +
-    days +
-    " ڕۆژ " +
+    days + " ڕۆژ " +
+    hours + " کاتژمێر " +
+    minutes + " خولەک " +
+    seconds + " چرکە";
 
-    hours +
-    " کاتژمێر " +
-
-    minutes +
-    " خولەک " +
-
-    seconds +
-    " چرکە";
-
-},1000);
+}, 1000);
 
 </script>
 
